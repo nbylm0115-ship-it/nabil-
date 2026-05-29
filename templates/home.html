@@ -1,0 +1,925 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>LUSSO</title>
+
+    <!-- SEO -->
+
+    <link rel="icon"
+          href="{% static 'images/preview.jpg' %}">
+
+    <meta name="title"
+          content="LUSSO Egypt | Premium Streetwear">
+
+    <meta name="description"
+          content="Luxury oversized streetwear brand in Egypt. Premium quality and modern fashion.">
+
+    <meta property="og:title"
+          content="LUSSO Egypt">
+
+    <meta property="og:description"
+          content="Premium Apparel & Luxury Streetwear">
+
+    <meta property="og:image"
+          content="{% static 'images/preview.jpg' %}">
+
+    <meta property="og:type"
+          content="website">
+
+    <!-- FONT -->
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            scroll-behavior:smooth;
+        }
+
+        body{
+            font-family:'Poppins',sans-serif;
+            background:#0f0f0f;
+            overflow-x:hidden;
+        }
+
+        /* TOP BAR */
+
+        .top-bar{
+
+            width:100%;
+
+            background:#d4af37;
+
+            color:#000;
+
+            padding:12px 0;
+
+            position:fixed;
+
+            top:0;
+
+            z-index:2000;
+
+            overflow:hidden;
+
+            white-space:nowrap;
+        }
+
+        .top-bar span{
+
+            display:inline-block;
+
+            padding-left:100%;
+
+            font-weight:700;
+
+            letter-spacing:1px;
+
+            animation:marquee 15s linear infinite;
+        }
+
+        @keyframes marquee{
+
+            0%{
+                transform:translateX(0);
+            }
+
+            100%{
+                transform:translateX(-100%);
+            }
+        }
+
+        /* NAVBAR */
+
+        .navbar{
+
+            width:100%;
+
+            padding:22px 8%;
+
+            background:rgba(0,0,0,.75);
+
+            backdrop-filter:blur(10px);
+
+            display:flex;
+
+            justify-content:space-between;
+
+            align-items:center;
+
+            position:fixed;
+
+            top:45px;
+
+            z-index:1000;
+        }
+
+        .logo{
+
+            color:#d4af37;
+
+            font-size:35px;
+
+            font-weight:700;
+
+            letter-spacing:5px;
+        }
+
+        .nav-links{
+
+            display:flex;
+
+            gap:35px;
+        }
+
+        .nav-links a{
+
+            color:white;
+
+            text-decoration:none;
+
+            font-weight:500;
+
+            transition:.3s;
+        }
+
+        .nav-links a:hover{
+
+            color:#d4af37;
+        }
+
+        .cart-btn{
+
+            background:#d4af37;
+
+            color:black;
+
+            padding:13px 25px;
+
+            border-radius:14px;
+
+            text-decoration:none;
+
+            font-weight:bold;
+
+            transition:.3s;
+        }
+
+        .cart-btn:hover{
+
+            transform:scale(1.05);
+        }
+
+        /* HERO */
+
+        .hero{
+
+            width:100%;
+
+            height:100vh;
+
+            background:
+            linear-gradient(rgba(0,0,0,.6),
+            rgba(0,0,0,.7)),
+            url("{% static 'images/bg.jpg' %}");
+
+            background-size:cover;
+
+            background-position:center;
+
+            display:flex;
+
+            justify-content:center;
+
+            align-items:center;
+
+            text-align:center;
+
+            padding:20px;
+        }
+
+        .hero-content{
+
+            color:white;
+
+            animation:fadeUp 1.2s ease;
+        }
+
+        .hero-content h1{
+
+            font-size:85px;
+
+            margin-bottom:20px;
+
+            line-height:1.1;
+        }
+
+        .hero-content p{
+
+            font-size:22px;
+
+            color:#ddd;
+
+            margin-bottom:35px;
+        }
+
+        .hero-btn{
+
+            background:#d4af37;
+
+            color:rgb(255, 255, 255);
+
+            padding:17px 40px;
+
+            border-radius:14px;
+
+            text-decoration:none;
+
+            font-weight:bold;
+
+            transition:.3s;
+
+            display:inline-block;
+        }
+
+        .hero-btn:hover{
+
+            transform:translateY(-5px);
+        }
+
+        @keyframes fadeUp{
+
+            from{
+                opacity:0;
+                transform:translateY(50px);
+            }
+
+            to{
+                opacity:1;
+                transform:translateY(0);
+            }
+        }
+
+        /* PRODUCTS */
+
+        .products{
+
+            padding:120px 8%;
+
+            background:#ffffff;
+        }
+
+        .section-title{
+
+            text-align:center;
+
+            margin-bottom:70px;
+        }
+
+        .section-title h2{
+
+            color:white;
+
+            font-size:55px;
+
+            margin-bottom:10px;
+        }
+
+        .section-title p{
+
+            color:#aaa;
+
+            letter-spacing:2px;
+        }
+
+        .product-grid{
+
+            display:grid;
+
+            grid-template-columns:
+            repeat(auto-fit,minmax(290px,1fr));
+
+            gap:35px;
+        }
+
+        .product-card{
+
+            background:rgb(255, 255, 255);
+
+            border:1px solid rgba(255,255,255,.08);
+
+            border-radius:25px;
+
+            overflow:hidden;
+
+            transition:.4s;
+
+            backdrop-filter:blur(10px);
+        }
+
+        .product-card:hover{
+
+            transform:translateY(-10px);
+
+            box-shadow:0 15px 40px rgba(0,0,0,.4);
+        }
+
+        .product-image{
+
+            height:360px;
+
+            overflow:hidden;
+        }
+
+        .product-image img{
+
+            width:100%;
+
+            height:100%;
+
+            object-fit:cover;
+
+            transition:.5s;
+        }
+
+        .product-card:hover img{
+
+            transform:scale(1.08);
+        }
+
+        .product-info{
+
+            padding:25px;
+        }
+
+        .badge{
+
+            background:#000000;
+
+            color:rgb(255, 255, 255);
+
+            padding:6px 14px;
+
+            border-radius:30px;
+
+            font-size:12px;
+
+            font-weight:bold;
+        }
+
+        .product-info h3{
+
+            color:rgb(0, 0, 0);
+
+            font-size:26px;
+
+            margin:18px 0 12px;
+        }
+
+        .price{
+
+            color:#000000;
+
+            font-size:24px;
+
+            font-weight:bold;
+
+            margin-bottom:25px;
+        }
+
+        .buttons{
+
+            display:flex;
+
+            gap:15px;
+        }
+
+        .view-btn,
+        .add-btn{
+
+            flex:1;
+
+            text-align:center;
+
+            padding:14px;
+
+            border-radius:12px;
+
+            text-decoration:none;
+
+            font-weight:bold;
+
+            transition:.3s;
+        }
+
+        .view-btn{
+
+            background:#1c1c1c;
+
+            color:white;
+        }
+
+        .add-btn{
+
+            background:#000000;
+
+            color:rgb(255, 255, 255);
+        }
+
+        .view-btn:hover{
+
+            background:white;
+
+            color:black;
+        }
+
+        .add-btn:hover{
+
+            transform:scale(1.05);
+        }
+
+        /* ABOUT */
+
+        .about{
+
+            padding:120px 8%;
+
+            background:#ffffff;
+        }
+
+        .about-container{
+
+            display:flex;
+
+            align-items:center;
+
+            gap:70px;
+
+            flex-wrap:wrap;
+        }
+
+        .about-image{
+
+            flex:1;
+        }
+
+        .about-image img{
+
+            width:100%;
+
+            border-radius:30px;
+        }
+
+        .about-text{
+
+            flex:1;
+
+            color:rgb(0, 0, 0);
+        }
+
+        .about-text h2{
+
+            font-size:55px;
+
+            margin-bottom:25px;
+        }
+
+        .about-text p{
+
+            color:#000000;
+
+            line-height:1.9;
+
+            font-size:18px;
+
+            margin-bottom:20px;
+        }
+
+        /* FOOTER */
+
+        footer{
+
+            background:black;
+
+            padding:60px 8%;
+
+            text-align:center;
+
+            color:white;
+        }
+
+        footer h1{
+
+            color:#000000;
+
+            font-size:45px;
+
+            margin-bottom:15px;
+        }
+
+        footer p{
+
+            color:#ffffff;
+
+            margin-bottom:30px;
+        }
+
+        .socials{
+
+            display:flex;
+
+            justify-content:center;
+
+            gap:25px;
+
+            flex-wrap:wrap;
+        }
+
+        .socials a{
+
+            color:#ffffff;
+
+            text-decoration:none;
+
+            font-weight:bold;
+
+            transition:.3s;
+        }
+
+        .socials a:hover{
+
+            color:rgb(0, 0, 0);
+        }
+
+        /* WHATSAPP */
+
+        .whatsapp{
+
+            position:fixed;
+
+            bottom:25px;
+
+            right:25px;
+
+            width:68px;
+
+            height:68px;
+
+            background:#25d366;
+
+            color:white;
+
+            border-radius:50%;
+
+            display:flex;
+
+            justify-content:center;
+
+            align-items:center;
+
+            text-decoration:none;
+
+            font-size:30px;
+
+            box-shadow:0 10px 25px rgba(0,0,0,.4);
+
+            z-index:1000;
+
+            animation:bounce 2s infinite;
+        }
+
+        @keyframes bounce{
+
+            0%{
+                transform:translateY(0);
+            }
+
+            50%{
+                transform:translateY(-8px);
+            }
+
+            100%{
+                transform:translateY(0);
+            }
+        }
+
+        /* MOBILE */
+
+        @media(max-width:900px){
+
+            .navbar{
+
+                flex-direction:column;
+
+                gap:20px;
+            }
+
+            .hero-content h1{
+
+                font-size:48px;
+            }
+
+            .hero-content p{
+
+                font-size:18px;
+            }
+
+            .about-container{
+
+                flex-direction:column;
+            }
+
+            .nav-links{
+
+                flex-wrap:wrap;
+
+                justify-content:center;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- TOP BAR -->
+
+    <div class="top-bar">
+
+        <span>
+
+            FREE SHIPPING ON ORDERS OVER 2000LE🔥
+            NEW COLLECTION OUT NOW 🔥
+            PREMIUM STREETWEAR 🔥
+
+        </span>
+
+    </div>
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+
+            LUSSO
+
+        </div>
+
+        <div class="nav-links">
+
+            <a href="#products">
+                Shop
+            </a>
+
+            <a href="#about">
+                About
+            </a>
+
+            <a href="#contact">
+                Contact
+            </a>
+
+        </div>
+
+        <a href="{% url 'cart' %}"
+           class="cart-btn">
+
+            Cart
+
+        </a>
+
+    </nav>
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <h1>
+
+                WE DON'T FOLLOW TRENDS
+
+            </h1>
+
+            <p>
+
+                Luxury Streetwear For The New Generation
+
+            </p>
+
+            <a href="#products"
+               class="hero-btn">
+
+                SHOP NOW
+
+            </a>
+
+        </div>
+
+    </section>
+
+    <!-- PRODUCTS -->
+
+    <section class="products"
+             id="products">
+
+        <div class="section-title">
+
+            <h2>
+
+                OUR COLLECTION
+
+            </h2>
+
+            <p>
+
+                Premium Streetwear Pieces
+
+            </p>
+
+        </div>
+
+        <div class="product-grid">
+
+            {% for product in products %}
+
+            <div class="product-card">
+
+                <div class="product-image">
+
+                    <img src="{{ product.image.url }}">
+
+                </div>
+
+                <div class="product-info">
+
+                    <span class="badge">
+
+                        NEW
+
+                    </span>
+
+                    <h3>
+
+                        {{ product.name }}
+
+                    </h3>
+
+                    <p class="price">
+
+                        {{ product.price }} EGP
+
+                    </p>
+
+                    <div class="buttons">
+
+                        <a href="{% url 'product_detail' product.id %}"
+                           class="view-btn">
+
+                            View
+
+                        </a>
+
+                        <a href="{% url 'add_to_cart' product.id %}"
+                           class="add-btn">
+
+                            Add To Cart
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+    <!-- ABOUT -->
+
+    <section class="about"
+             id="about">
+
+        <div class="about-container">
+
+            <div class="about-image">
+
+                <img src="{% static 'images/about.jpg' %}">
+
+            </div>
+
+            <div class="about-text">
+
+                <h2>
+
+                    ABOUT LUSSO
+
+                </h2>
+
+                <p>
+
+                    LUSSO is more than clothing.
+                    It's a luxury streetwear movement
+                    made for people who create trends
+                    instead of following them.
+
+                </p>
+
+                <p>
+
+                    Premium oversized fits,
+                    modern luxury designs,
+                    and high-quality pieces built
+                    for the new generation.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+
+    <footer id="contact">
+
+        <h1>
+
+            LUSSO
+
+        </h1>
+
+        <p>
+
+            Luxury Streetwear Brand
+
+        </p>
+
+        <div class="socials">
+
+            <a href="https://instagram.com"
+               target="_blank">
+
+                Instagram
+
+            </a>
+
+            <a href="https://tiktok.com"
+               target="_blank">
+
+                TikTok
+
+            </a>
+
+            <a href="https://www.facebook.com/stor.nabil0/
+               target="_blank">
+
+                Facebook
+
+            </a>
+
+            <a href="https://wa.me/201556594553"
+               target="_blank">
+
+                WhatsApp
+
+            </a>
+
+        </div>
+
+    </footer>
+
+    <!-- WHATSAPP -->
+
+    <a href="https://wa.me/201556594553"
+       class="whatsapp">
+
+        ☎
+
+    </a>
+
+</body>
+
+</html>

@@ -1,0 +1,440 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>LUSSO Checkout</title>
+<style>
+.top-logo{
+    width:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding-top:25px;
+    margin-bottom:50px;
+}
+.logo{
+    color:white;
+    text-decoration:none;
+    font-size:52px;
+    font-weight:900;
+    letter-spacing:12px;
+    font-family:Arial,sans-serif;
+    transition:.3s;
+    text-shadow:0 0 10px rgba(255,255,255,.25);
+}
+.logo:hover{
+    transform:scale(1.05);
+    color:#f5f5f5;
+    text-shadow:0 0 20px rgba(255,255,255,.5);
+}
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Poppins,sans-serif;
+}
+body{
+    background:#0b0b0b;
+    color:white;
+    min-height:100vh;
+    padding:40px;
+    overflow-x:hidden;
+}
+.luxury-container{
+    width:100%;
+    max-width:1400px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:1.2fr .8fr;
+    gap:40px;
+}
+.luxury-left{
+    background:#111;
+    border:1px solid #222;
+    border-radius:30px;
+    padding:40px;
+}
+.top-text{
+    font-size:14px;
+    color:#999;
+    letter-spacing:4px;
+    margin-bottom:10px;
+}
+h1{
+    font-size:55px;
+    margin-bottom:40px;
+}
+.input-group{
+    margin-bottom:25px;
+}
+.input-group label{
+    display:block;
+    margin-bottom:10px;
+    color:#bbb;
+}
+.input-group input,
+.input-group textarea{
+    width:100%;
+    background:#181818;
+    border:1px solid #2a2a2a;
+    border-radius:18px;
+    padding:18px;
+    color:white;
+    font-size:16px;
+    outline:none;
+}
+textarea{
+    resize:none;
+    height:120px;
+}
+.delivery-title{
+    margin-top:35px;
+    margin-bottom:20px;
+    letter-spacing:3px;
+    color:#999;
+    font-size:14px;
+}
+.delivery-options{
+    display:flex;
+    gap:20px;
+    margin-bottom:40px;
+}
+.delivery-card{
+    flex:1;
+    border:1px solid #2a2a2a;
+    background:#111;
+    border-radius:22px;
+    padding:25px;
+    cursor:pointer;
+    transition:.3s;
+}
+.delivery-card:hover{
+    border-color:#d4af37;
+}
+.delivery-card.active{
+    background:white;
+    color:black;
+    border-color:white;
+}
+.delivery-card h3{
+    margin-bottom:10px;
+}
+.payment-methods h3{
+    color:#999;
+    margin-bottom:20px;
+    letter-spacing:3px;
+    font-size:14px;
+}
+.payment-option{
+    width:100%;
+    padding:22px;
+    border:1px solid #2a2a2a;
+    border-radius:18px;
+    margin-bottom:15px;
+    cursor:pointer;
+    transition:.3s;
+    background:#111;
+    color:white;
+    font-size:18px;
+}
+.payment-option:hover{
+    border-color:#d4af37;
+}
+.payment-option.active{
+    background:white;
+    color:black;
+    border-color:white;
+}
+.payment-note{
+    color:#999;
+    font-size:14px;
+    margin-top:10px;
+}
+.payment-box{
+    display:none;
+    margin-top:15px;
+    background:#181818;
+    border:1px solid #2a2a2a;
+    border-radius:18px;
+    padding:20px;
+}
+.payment-box h2{
+    color:#d4af37;
+    margin-top:10px;
+    margin-bottom:15px;
+}
+.upload-box{
+    margin-top:15px;
+}
+.upload-box input{
+    width:100%;
+    padding:15px;
+    border-radius:15px;
+    background:#111;
+    border:1px solid #2a2a2a;
+    color:white;
+}
+.confirm-btn{
+    width:100%;
+    margin-top:30px;
+    padding:22px;
+    border:none;
+    border-radius:20px;
+    background:white;
+    color:black;
+    font-size:18px;
+    font-weight:700;
+    cursor:pointer;
+    transition:.3s;
+}
+.confirm-btn:hover{
+    transform:scale(1.02);
+}
+.luxury-right{
+    background:#111;
+    border:1px solid #222;
+    border-radius:30px;
+    padding:40px;
+    height:fit-content;
+    position:sticky;
+    top:30px;
+}
+.summary-title{
+    font-size:40px;
+    margin-bottom:40px;
+}
+.summary-row{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:25px;
+    color:#ddd;
+    font-size:18px;
+}
+.summary-total{
+    margin-top:40px;
+    padding-top:30px;
+    border-top:1px solid #2a2a2a;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+.summary-total h2{
+    font-size:45px;
+}
+@media(max-width:1000px){
+    .luxury-container{
+        grid-template-columns:1fr;
+    }
+    .delivery-options{
+        flex-direction:column;
+    }
+    h1{
+        font-size:40px;
+    }
+}
+</style>
+</head>
+<body>
+<div class="top-logo">
+<a href="{% url 'home' %}"
+   class="logo">
+    LUSSO®️
+</a>
+</div>
+<div class="luxury-container">
+<!-- LEFT -->
+<div class="luxury-left">
+    <div class="top-text">
+        LUSSO®️ STREETWEAR
+    </div>
+    <h1>Checkout</h1>
+    <form method="POST"
+          enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="input-group">
+            <label>Full Name</label>
+            <input type="text"
+                   name="name"
+                   required>
+        </div>
+        <div class="input-group">
+            <label>Phone Number</label>
+            <input type="text"
+                   name="phone"
+                   required>
+        </div>
+        <div class="input-group">
+            <label>Shipping Address</label>
+            <textarea name="address"
+                      required></textarea>
+        </div>
+        <!-- DELIVERY -->
+        <div class="delivery-title">
+            DELIVERY AREA
+        </div>
+        <div class="delivery-options">
+            <div class="delivery-card active"
+                 onclick="selectDelivery(50, this)">
+                <h3>Cairo & Giza</h3>
+                <p>50 LE Delivery</p>
+            </div>
+            <div class="delivery-card"
+                 onclick="selectDelivery(100, this)">
+                <h3>Other Cities</h3>
+                <p>100 LE Delivery</p>
+            </div>
+        </div>
+        <input type="hidden"
+               name="delivery_price"
+               id="deliveryInput"
+               value="50">
+        <!-- PAYMENT -->
+        <div class="payment-methods">
+            <h3>PAYMENT METHOD</h3>
+            <input type="hidden"
+                   name="payment_method"
+                   id="paymentInput"
+                   value="cash">
+            <!-- CASH -->
+            <div class="payment-option active"
+                 onclick="selectPayment(this, 'cash')">
+                Cash On Delivery
+            </div>
+            <!-- VISA -->
+            <div class="payment-option">
+                Visa / Mastercard
+                <div class="payment-note">
+                    Available Soon
+                </div>
+            </div>
+            <!-- VODAFONE -->
+            <div class="payment-option"
+                 onclick="selectPayment(this, 'vodafone')">
+                Vodafone Cash
+            </div>
+            <div class="payment-box"
+                 id="vodafoneBox">
+                <p>
+                    Send payment to:
+                </p>
+                <h2>
+                    01012389863 nabil mahmoud
+                </h2>
+                <div class="upload-box">
+                    <label>
+                        Upload Screenshot
+                    </label>
+                    <input type="file"
+                           name="payment_screenshot"
+                           id="vodafoneScreenshot">
+                </div>
+            </div>
+            <!-- INSTAPAY -->
+            <div class="payment-option"
+                 onclick="selectPayment(this, 'instapay')">
+                Instapay
+            </div>
+            <div class="payment-box"
+                 id="instapayBox">
+                <p>
+                    Send payment to:
+                </p>
+                <h2>
+                    nabil12-7723@instapay
+                </h2>
+                <div class="upload-box">
+                    <label>
+                        Upload Screenshot
+                    </label>
+                    <input type="file"
+                           name="payment_screenshot"
+                           id="instapayScreenshot">
+                </div>
+            </div>
+        </div>
+        <button class="confirm-btn"
+                type="submit">
+            CONFIRM ORDER
+        </button>
+    </form>
+</div>
+<!-- RIGHT -->
+<div class="luxury-right">
+    <div class="summary-title">
+        Order Summary
+    </div>
+    <div class="summary-row">
+        <span>Products</span>
+        <span>{{ total }} LE</span>
+    </div>
+    <div class="summary-row">
+        <span>Delivery</span>
+        <span id="deliveryPrice">
+            50 LE
+        </span>
+    </div>
+    <div class="summary-total">
+        <span>Total</span>
+        <h2 id="finalTotal">
+            {{ total|add:50 }} LE
+        </h2>
+    </div>
+</div>
+</div>
+<script>
+let deliveryPrice = 50;
+function selectDelivery(price, element){
+    deliveryPrice = price;
+    document
+    .querySelectorAll('.delivery-card')
+    .forEach(card => {
+        card.classList.remove('active');
+    });
+    element.classList.add('active');
+    document.getElementById('deliveryPrice')
+    .innerHTML = price + " LE";
+    let total = {{ total }};
+    document.getElementById('finalTotal')
+    .innerHTML = (total + price) + " LE";
+    document.getElementById('deliveryInput').value = price;
+}
+function selectPayment(element, method){
+    document
+    .querySelectorAll('.payment-option')
+    .forEach(item => {
+        item.classList.remove('active');
+    });
+    element.classList.add('active');
+    document.getElementById('paymentInput').value = method;
+    const vodafoneBox =
+        document.getElementById('vodafoneBox');
+    const instapayBox =
+        document.getElementById('instapayBox');
+    const vodafoneInput =
+        document.getElementById('vodafoneScreenshot');
+    const instapayInput =
+        document.getElementById('instapayScreenshot');
+    vodafoneBox.style.display = 'none';
+    instapayBox.style.display = 'none';
+    vodafoneInput.removeAttribute('required');
+    instapayInput.removeAttribute('required');
+    if(method === 'vodafone'){
+        vodafoneBox.style.display = 'block';
+        vodafoneInput.setAttribute(
+            'required',
+            'required'
+        );
+    }
+    if(method === 'instapay'){
+        instapayBox.style.display = 'block';
+        instapayInput.setAttribute(
+            'required',
+            'required'
+        );
+    }
+}
+</script>
+</body>
+</html

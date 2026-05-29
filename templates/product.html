@@ -1,0 +1,527 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>{{ product.name }}</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Poppins',sans-serif;
+        }
+
+        body{
+
+            background:
+            linear-gradient(to bottom,#0b0b0b,#151515);
+
+            color:white;
+
+            overflow-x:hidden;
+        }
+
+        .container{
+
+    width:90%;
+
+    max-width:1400px;
+
+    margin:auto;
+
+    min-height:100vh;
+
+    display:flex;
+
+    align-items:center;
+
+    padding-top:180px;
+}
+
+        .product-page{
+
+            width:100%;
+
+            display:grid;
+
+            grid-template-columns:1.1fr 1fr;
+
+            gap:50px;
+
+            align-items:center;
+        }
+
+        .product-image{
+
+            width:100%;
+
+            background:#fff;
+
+            border-radius:35px;
+
+            padding:30px;
+
+            box-shadow:
+            0 0 40px rgba(0,0,0,.5);
+
+            overflow:hidden;
+        }
+
+        .product-image img{
+
+            width:100%;
+
+            height:650px;
+
+            object-fit:contain;
+
+            transition:.4s;
+        }
+
+        .product-info{
+
+            padding:20px;
+        }
+
+        .top-logo{
+
+    position:fixed;
+
+    top:0px;
+
+    left:0;
+
+    width:100%;
+
+    display:flex;
+
+    justify-content:center;
+
+    z-index:9999;
+}
+
+.logo{
+
+    text-decoration:none;
+
+    color:white;
+
+    font-size:48px;
+
+    font-weight:900;
+
+    letter-spacing:12px;
+
+    transition:.3s;
+}
+
+.logo:hover{
+
+    color:#d4af37;
+}
+
+.logo:hover{
+
+    color:#d4af37;
+
+    transform:translateX(5px);
+}
+
+        .product-info h1{
+
+            font-size:65px;
+
+            line-height:1.1;
+
+            margin-bottom:15px;
+
+            font-weight:800;
+        }
+
+        .price{
+
+            font-size:45px;
+
+            color:#d4af37;
+
+            font-weight:700;
+
+            margin-bottom:25px;
+        }
+
+        .desc{
+
+            color:#aaa;
+
+            line-height:2;
+
+            font-size:17px;
+
+            margin-bottom:40px;
+
+            max-width:500px;
+        }
+
+        .section-title{
+
+            font-size:13px;
+
+            letter-spacing:4px;
+
+            color:#777;
+
+            margin-bottom:15px;
+        }
+
+        .sizes,
+        .colors{
+
+            display:flex;
+
+            gap:15px;
+
+            margin-bottom:35px;
+
+            flex-wrap:wrap;
+        }
+
+        .size-btn{
+
+            min-width:70px;
+
+            height:70px;
+
+            padding:0 25px;
+
+            border-radius:20px;
+
+            border:1px solid #333;
+
+            background:#181818;
+
+            color:white;
+
+            cursor:pointer;
+
+            font-size:17px;
+
+            font-weight:600;
+
+            transition:.3s;
+        }
+
+        .size-btn:hover{
+
+            border-color:#d4af37;
+
+            transform:translateY(-3px);
+        }
+
+        .size-btn.active{
+
+            background:white;
+
+            color:black;
+
+            border-color:white;
+        }
+
+        .color-btn{
+    width:55px;
+    height:55px;
+    border-radius:50%;
+    cursor:pointer;
+    transition:.3s;
+    border:none;
+}
+
+.color-btn.black{
+    background:black;
+}
+
+.color-btn.white{
+    background:white;
+    border:2px solid #999;
+}
+
+.color-btn.gray{
+    background:gray;
+}
+
+        .color-btn:hover{
+
+            transform:scale(1.1);
+        }
+
+        .color-btn.active{
+
+            border:3px solid white;
+
+            transform:scale(1.15);
+        }
+
+        .add-btn{
+
+            width:100%;
+
+            height:75px;
+
+            border:none;
+
+            border-radius:22px;
+
+            background:white;
+
+            color:black;
+
+            font-size:18px;
+
+            font-weight:700;
+
+            cursor:pointer;
+
+            transition:.3s;
+        }
+
+        .add-btn:hover{
+
+            transform:scale(1.02);
+
+            background:#d4af37;
+
+            color:black;
+        }
+
+        @media(max-width:1000px){
+
+            .container{
+
+                padding:100px 0;
+            }
+
+            .product-page{
+
+                grid-template-columns:1fr;
+            }
+
+            .product-image img{
+
+                height:450px;
+            }
+
+            .product-info h1{
+
+                font-size:45px;
+            }
+
+            .price{
+
+                font-size:35px;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="product-page">
+
+        <!-- IMAGE -->
+
+        <div class="product-image">
+
+           <img id="mainImage"
+src="{{ product.image.url }}"
+alt="{{ product.name }}">
+     
+        </div>
+
+        <!-- INFO -->
+
+        <div class="product-info">
+
+            <div class="top-logo">
+
+    <a href="{% url 'home' %}"
+       class="logo">
+
+       LUSSO®
+
+    </a>
+
+</div>
+
+            <h1>
+
+                {{ product.name }}
+
+            </h1>
+
+            <div class="price">
+
+                {{ product.price }} LE
+
+            </div>
+
+            <div class="desc">
+
+                Premium oversized t-shirt with luxury fit.
+                Made with soft cotton fabric for maximum comfort
+                and clean streetwear look.
+
+            </div>
+
+            <form action="{% url 'add_to_cart' product.id %}"
+                  method="GET">
+
+                <!-- SIZE -->
+
+                <div class="section-title">
+
+                    SELECT SIZE
+
+                </div>
+
+                <div class="sizes">
+
+                    <button type="button"
+                            class="size-btn active"
+                            onclick="selectSize(this,'M')">
+
+                        M
+
+                    </button>
+
+                    <button type="button"
+                            class="size-btn"
+                            onclick="selectSize(this,'L')">
+
+                        L
+
+                    </button>
+
+                    <button type="button"
+                            class="size-btn"
+                            onclick="selectSize(this,'XL')">
+
+                        XL
+
+                    </button>
+
+                </div>
+
+                <input type="hidden"
+                       name="size"
+                       id="selectedSize"
+                       value="M">
+
+                <!-- COLORS -->
+
+                <div class="section-title">
+
+                    SELECT COLOR
+
+                </div>
+
+
+<button type="button"
+class="color-btn"
+onclick="selectColor(this,'White','{{ product.white_image.url }}')">
+</button>
+
+<button type="button"
+class="color-btn black"
+onclick="selectColor(this,'Black','{{ product.black_image.url }}')">
+</button>
+
+<button type="button"
+class="color-btn gray"
+onclick="selectColor(this,'Grey','{{ product.grey_image.url }}')">
+</button>
+
+                </div>
+
+                <input type="hidden"
+                       name="color"
+                       id="selectedColor"
+                       value="Black">
+
+                <!-- BUTTON -->
+
+                <button type="submit"
+                        class="add-btn">
+
+                    ADD TO CART
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+function selectSize(element,size){
+
+    document
+    .querySelectorAll('.size-btn')
+    .forEach(btn=>{
+
+        btn.classList.remove('active');
+
+    });
+
+    element.classList.add('active');
+
+    document
+    .getElementById('selectedSize')
+    .value=size;
+}
+
+function selectColor(element, color, image){
+
+    document
+    .querySelectorAll('.color-btn')
+    .forEach(btn => {
+
+        btn.classList.remove('active');
+
+    });
+
+    element.classList.add('active');
+
+    document
+    .getElementById('selectedColor')
+    .value = color;
+
+    document
+    .getElementById('mainImage')
+    .src = image;
+}
+
+</script>
+
+</body>
+
+</html>
