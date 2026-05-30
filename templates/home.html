@@ -332,34 +332,35 @@
     }
     /* WHATSAPP */
     .whatsapp{
-
     position:fixed;
-
     bottom:90px;
-
     right:20px;
-
-    background:#25d366;
-
-    color:white;
-
-    border-radius:50px;
-
-    padding:14px 18px;
-
     display:flex;
-
     align-items:center;
-
     gap:10px;
+    z-index:9999;
+}
 
-    text-decoration:none;
+.whatsapp-text{
+    background:#111;
+    color:white;
+    padding:10px 16px;
+    border-radius:12px;
+    font-size:14px;
+    white-space:nowrap;
+}
 
+.whatsapp i{
+    width:68px;
+    height:68px;
+    background:#25d366;
+    color:white;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:32px;
     box-shadow:0 10px 25px rgba(0,0,0,.4);
-
-    z-index:99999;
-
-    animation:bounce 2s infinite;
 }
 
 .whatsapp i{
@@ -610,11 +611,13 @@
     <a href="https://wa.me/201556594553"
    class="whatsapp">
 
-    <i class="fa-brands fa-whatsapp"></i>
-
-    <span>
+    <span class="whatsapp-text">
         Need Help?
     </span>
+
+    <i class="fa-brands fa-whatsapp"></i>
+
+</a>
 
 </a>
 </div>
