@@ -83,9 +83,13 @@
 
                 </div>
 
+                <div class="price-row">
+
                 <span class="price">
                     {{ item.product.price }} LE
                 </span>
+
+            </div>
 
                 <div class="quantity-box">
 
@@ -100,12 +104,6 @@
     </a>
 
 </div>
-
-            </div>
-
-            <div class="right">
-
-                {{ item.subtotal }} LE
 
             </div>
 
@@ -274,30 +272,28 @@ body{
 }
 
 .total-box{
-    margin-top:35px;
-    background:linear-gradient(145deg,#111,#1a1a1a);
-    border-radius:35px;
-    padding:45px;
+    margin-top:25px;
+    background:#0f0f0f;
+    border-radius:28px;
+    padding:30px;
     text-align:center;
-    border:1px solid #2a2a2a;
-    box-shadow:0 0 30px rgba(0,0,0,.35);
+    border:1px solid #1f1f1f;
 }
 
 .total-box h2{
-
-    font-size:42px;
-    margin-bottom:30px;
+    font-size:28px;
+    margin-bottom:20px;
 }
 
 .checkout-btn{
     display:inline-block;
-    width:100%;
-    padding:20px;
+    width:220px;
+    padding:16px;
     background:white;
     color:black;
     text-decoration:none;
-    border-radius:20px;
-    font-size:18px;
+    border-radius:16px;
+    font-size:17px;
     font-weight:700;
     transition:.3s;
 }
@@ -329,8 +325,8 @@ body{
 
     .cart-options{
         display:flex;
-        gap:12px;
-        margin-top:5px;
+        gap:10px;
+        margin-top:8px;
     }
 
     .option-box{
@@ -340,17 +336,18 @@ body{
     }
 
     .option-box label{
-        font-size:14px;
-        color:#aaa;
+        font-size:13px;
+        color:#888;
+        margin-bottom:5px;
     }
 
     .option-box select{
-        padding:8px 12px;
-        border-radius:10px;
+        width:95px;
+        padding:8px 10px;
+        border-radius:12px;
         border:none;
-        background:#1a1a1a;
+        background:#171717;
         color:white;
-        width:110px;
         font-size:14px;
     }
     }
