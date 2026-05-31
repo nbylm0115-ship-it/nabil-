@@ -474,7 +474,25 @@
             flex-direction:column;
         }
         .product-grid{
-            grid-template-columns:1fr;
+           grid-template-columns:repeat(2,1fr);
+           gap:15px;
+        }
+        .product-card img{
+           height:220px !important;
+        }
+
+        .product-info h3{
+          font-size:18px;
+        }
+
+        .price{
+          font-size:18px;
+        }
+
+        .view-btn,
+        .add-btn{
+           padding:10px;
+           font-size:14px;
         }
         .whatsapp{
             width:60px;
