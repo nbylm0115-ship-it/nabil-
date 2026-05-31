@@ -199,43 +199,40 @@ body{
 }
 
 .cart-item{
-
     width:100%;
-    background:#111;
-    border:1px solid #222;
-    border-radius:30px;
-    padding:25px;
+    background:#0f0f0f;
+    border:1px solid #1d1d1d;
+    border-radius:28px;
+    padding:20px;
     display:flex;
     align-items:center;
-    justify-content:space-between;
-    margin-bottom:25px;
+    gap:18px;
+    margin-bottom:20px;
 }
 
 .left{
-
-    width:140px;
+    width:100px;
+    flex-shrink:0;
 }
 
 .product-image{
-
-    width:95px;
-    height:95px;
+    width:100px;
+    height:100px;
     object-fit:cover;
     border-radius:18px;
 }
-
 .middle{
-
     flex:1;
-    padding:0 30px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
 }
 
 .middle h2{
-
-    font-size:24px;
-    margin-bottom:10px;
+    font-size:22px;
+    line-height:1.4;
+    margin:0;
 }
-
 .middle p{
 
     color:#aaa;
@@ -243,17 +240,14 @@ body{
 }
 
 .price{
-
-    display:block;
-    margin-top:15px;
-    font-size:20px;
+    font-size:22px;
     font-weight:600;
 }
 
 .right{
-
-    font-size:28px;
+    font-size:24px;
     font-weight:700;
+    white-space:nowrap;
 }
 
 .quantity-box{
@@ -316,33 +310,27 @@ body{
 @media(max-width:900px){
 
     .cart-item{
-        width:100%;
-        background:#111;
-        border:1px solid #222;
-        border-radius:24px;
-        padding:18px;
-        display:flex;
-        align-items:center;
-        justify-content:space-between;
-        margin-bottom:18px;
-        transition:.3s;
-    }
+    flex-direction:row;
+    align-items:flex-start;
+    text-align:left;
+}
 
-    .middle{
+.middle h2{
+    font-size:18px;
+}
 
-        padding:20px 0;
-    }
+.price{
+    font-size:18px;
+}
 
-    .right{
-
-        margin-top:20px;
-    }
+.right{
+    font-size:20px;
+}
 
     .cart-options{
         display:flex;
-        gap:15px;
-        margin-top:15px;
-        flex-wrap:wrap;
+        gap:12px;
+        margin-top:5px;
     }
 
     .option-box{
@@ -357,12 +345,13 @@ body{
     }
 
     .option-box select{
-        padding:10px 14px;
-        border-radius:12px;
+        padding:8px 12px;
+        border-radius:10px;
         border:none;
         background:#1a1a1a;
         color:white;
-        min-width:120px;
+        width:110px;
+        font-size:14px;
     }
     }
 
