@@ -333,6 +333,29 @@
             }
         }
 
+            .product-options{
+                margin:25px 0;
+            }
+
+            .product-options label{
+                display:block;
+                margin-bottom:8px;
+                font-weight:600;
+                font-size:18px;
+                color:#111;
+            }
+
+            .product-options select{
+                width:100%;
+                padding:14px;
+                border-radius:14px;
+                border:1px solid #ddd;
+                margin-bottom:20px;
+                font-size:16px;
+                background:white;
+                outline:none;
+            }
+
     </style>
 
 </head>
@@ -467,35 +490,28 @@ onclick="selectColor(this,'Grey','{{ product.grey_image.url }}')">
 
                 <div class="product-options">
 
-                    <label>Choose Size</label>
+                <label>Choose Size</label>
 
-                    <select>
+                <select>
+                    <option>S</option>
+                    <option>M</option>
+                    <option>L</option>
+                    <option>XL</option>
+                </select>
 
-                        <option>S</option>
-                        <option>M</option>
-                        <option>L</option>
-                        <option>XL</option>
+                <label>Choose Color</label>
 
-                    </select>
+                <select>
+                    <option>Black</option>
+                    <option>White</option>
+                    <option>Gray</option>
+                </select>
 
-                    <label>Choose Color</label>
+            </div>
 
-                    <select>
-
-                        <option>Black</option>
-                        <option>White</option>
-                        <option>Gray</option>
-
-                    </select>
-
-                </div>
-
-                <button type="submit"
-                        class="add-btn">
-                        
-                    ADD TO CART
-
-                </button>
+            <button type="submit" class="add-btn">
+                ADD TO CART
+            </button>
 
             </form>
 
