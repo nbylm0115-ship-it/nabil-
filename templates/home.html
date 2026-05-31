@@ -274,9 +274,10 @@
     }
     .about-container{
         display:flex;
+        flex-direction:row-reverse;
         align-items:center;
-        gap:70px;
-        flex-wrap:wrap;
+        justify-content:space-between;
+        gap:60px;
     }
     .about-image{
         flex:1;
@@ -718,7 +719,7 @@
     <img src="{% static 'images/about1.jpg' %}" class="active">
     <img src="{% static 'images/about2.jpg' %}">
     <img src="{% static 'images/about3.jpg' %}">
-    
+
 </div>
 </section>
 <!-- FOOTER -->
