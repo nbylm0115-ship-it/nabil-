@@ -50,13 +50,38 @@
                     {{ item.product.name }}
                 </h2>
 
-                <p>
-                    Size: {{ item.size }}
-                </p>
+                <div class="cart-options">
 
-                <p>
-                    Color: {{ item.color }}
-                </p>
+                    <div class="option-box">
+
+                        <label>Size</label>
+
+                        <select>
+
+                            <option {% if item.size == "S" %}selected{% endif %}>S</option>
+                            <option {% if item.size == "M" %}selected{% endif %}>M</option>
+                            <option {% if item.size == "L" %}selected{% endif %}>L</option>
+                            <option {% if item.size == "XL" %}selected{% endif %}>XL</option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="option-box">
+
+                        <label>Color</label>
+
+                        <select>
+
+                            <option {% if item.color == "Black" %}selected{% endif %}>Black</option>
+                            <option {% if item.color == "White" %}selected{% endif %}>White</option>
+                            <option {% if item.color == "Gray" %}selected{% endif %}>Gray</option>
+
+                        </select>
+
+                    </div>
+
+                </div>
 
                 <span class="price">
                     {{ item.product.price }} LE
@@ -305,7 +330,34 @@ body{
 
         margin-top:20px;
     }
-}
+
+    .cart-options{
+        display:flex;
+        gap:15px;
+        margin-top:15px;
+        flex-wrap:wrap;
+    }
+
+    .option-box{
+        display:flex;
+        flex-direction:column;
+        gap:8px;
+    }
+
+    .option-box label{
+        font-size:14px;
+        color:#aaa;
+    }
+
+    .option-box select{
+        padding:10px 14px;
+        border-radius:12px;
+        border:none;
+        background:#1a1a1a;
+        color:white;
+        min-width:120px;
+    }
+    }
 
 </style>
 
