@@ -463,21 +463,22 @@ alt="{{ product.name }}">
 
                 </div>
 
+                <div class="colors">
 
-<button type="button"
-class="color-btn"
-onclick="selectColor(this,'White','{{ product.white_image.url }}')">
-</button>
+                    <button type="button"
+                    class="color-btn white"
+                    onclick="selectColor(this,'White','{{ product.white_image.url }}')">
+                    </button>
 
-<button type="button"
-class="color-btn black"
-onclick="selectColor(this,'Black','{{ product.black_image.url }}')">
-</button>
+                    <button type="button"
+                    class="color-btn black"
+                    onclick="selectColor(this,'Black','{{ product.black_image.url }}')">
+                    </button>
 
-<button type="button"
-class="color-btn gray"
-onclick="selectColor(this,'Grey','{{ product.grey_image.url }}')">
-</button>
+                    <button type="button"
+                    class="color-btn gray"
+                    onclick="selectColor(this,'Grey','{{ product.grey_image.url }}')">
+                    </button>
 
                 </div>
 
@@ -490,28 +491,28 @@ onclick="selectColor(this,'Grey','{{ product.grey_image.url }}')">
 
                 <div class="product-options">
 
-                <label>Choose Size</label>
+                    <label>Choose Size</label>
 
-                <select>
-                    <option>S</option>
-                    <option>M</option>
-                    <option>L</option>
-                    <option>XL</option>
-                </select>
+                    <select>
+                        <option>S</option>
+                        <option>M</option>
+                        <option>L</option>
+                        <option>XL</option>
+                    </select>
 
-                <label>Choose Color</label>
+                    <label>Choose Color</label>
 
-                <select>
-                    <option>Black</option>
-                    <option>White</option>
-                    <option>Gray</option>
-                </select>
+                    <select>
+                        <option>Black</option>
+                        <option>White</option>
+                        <option>Gray</option>
+                    </select>
 
-            </div>
+                </div>
 
-            <button type="submit" class="add-btn">
-                ADD TO CART
-            </button>
+                <button type="submit" class="add-btn">
+                    ADD TO CART
+                </button>
 
             </form>
 
