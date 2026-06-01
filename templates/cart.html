@@ -1,243 +1,176 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
+
     <title>LUSSO Cart</title>
+
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
           rel="stylesheet">
 
-<body>
-<div class="background-glow"></div>
-<div class="top-logo">
-    <a href="{% url 'home' %}" class="logo">
-        LUSSO®️
-    </a>
-</div>
-<div class="cart-container">
-    <div class="cart-box">
-        <div class="cart-header">
-            <h1 class="cart-title">
-                YOUR CART
-            </h1>
-            <p class="cart-subtitle">
-                Premium Streetwear Selected For You
-            </p>
-        </div>
-        {% for item in items %}
-        <div class="cart-item">
-            <div class="left">
-                <img src="{{ item.product.image.url }}"
-                     class="product-image">
-            </div>
-            <div class="middle">
-                <h2>
-                    {{ item.product.name }}
-                </h2>
-                <div class="cart-options">
-                    <div class="option-box">
-                        <label>Size</label>
-                        <select>
-                            <option {% if item.size == "S" %}selected{% endif %}>S</option>
-                            <option {% if item.size == "M" %}selected{% endif %}>M</option>
-                            <option {% if item.size == "L" %}selected{% endif %}>L</option>
-                            <option {% if item.size == "XL" %}selected{% endif %}>XL</option>
-                        </select>
-                    </div>
-                    <div class="option-box">
-                        <label>Color</label>
-                        <select>
-                            <option {% if item.color == "Black" %}selected{% endif %}>Black</option>
-                            <option {% if item.color == "White" %}selected{% endif %}>White</option>
-                            <option {% if item.color == "Gray" %}selected{% endif %}>Gray</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="bottom-row">
-                    <span class="price">
-                        {{ item.product.price }} LE
-                    </span>
-                    <div class="quantity-box">
-                        <a href="{% url 'decrease_quantity' item.key %}"
-                           class="qty-btn">
-                            -
-                        </a>
-                        <span class="qty-number">
-                            {{ item.quantity }}
-                        </span>
-                        <a href="{% url 'increase_quantity' item.key %}"
-                           class="qty-btn">
-                            +
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        {% endfor %}
-        <div class="total-box">
-            <div class="total-top">
-                <span>
-                    TOTAL
-                </span>
-                <h2>
-                    {{ total }} LE
-                </h2>
-            </div>
-            <a href="{% url 'checkout' %}"
-               class="checkout-btn">
-                SECURE CHECKOUT
-            </a>
-        </div>
-    </div>
-</div>
-</body>
 <style>
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
     font-family:'Poppins',sans-serif;
 }
+
 body{
     background:#070707;
     color:white;
     min-height:100vh;
     overflow-x:hidden;
-    padding:30px 18px 60px;
-    position:relative;
+    padding:25px 16px 60px;
 }
-.background-glow{
-    position:fixed;
-    top:-200px;
-    right:-100px;
-    width:400px;
-    height:400px;
-    background:rgba(212,175,55,.08);
-    filter:blur(120px);
-    z-index:0;
-}
+
+/* LOGO */
+
 .top-logo{
     width:100%;
     display:flex;
     justify-content:center;
     margin-bottom:45px;
-    position:relative;
-    z-index:2;
 }
+
 .logo{
     color:white;
     text-decoration:none;
     font-size:34px;
     font-weight:800;
-    letter-spacing:7px;
+    letter-spacing:8px;
     transition:.3s;
 }
+
 .logo:hover{
     color:#d4af37;
 }
+
+/* CONTAINER */
+
 .cart-container{
     width:100%;
     display:flex;
     justify-content:center;
-    position:relative;
-    z-index:2;
 }
+
 .cart-box{
     width:100%;
     max-width:850px;
 }
-.cart-header{
-    margin-bottom:28px;
-}
+
+/* TITLE */
+
 .cart-title{
-    font-size:36px;
+    font-size:38px;
     font-weight:800;
-    margin-bottom:8px;
+    margin-bottom:35px;
+    letter-spacing:2px;
 }
-.cart-subtitle{
-    color:#777;
-    font-size:14px;
-    letter-spacing:1px;
-}
+
+/* CART ITEM */
+
 .cart-item{
     width:100%;
     background:#0f0f0f;
-    border:1px solid #1d1d1d;
+    border:1px solid #1b1b1b;
     border-radius:28px;
     padding:16px;
     display:flex;
-    align-items:center;
     gap:16px;
-    margin-bottom:18px;
+    margin-bottom:20px;
     transition:.3s;
 }
+
 .cart-item:hover{
     border-color:#2d2d2d;
     transform:translateY(-2px);
 }
-.left{
-    width:90px;
-    flex-shrink:0;
-}
+
+/* IMAGE */
+
 .product-image{
-    width:90px;
-    height:90px;
+    width:95px;
+    height:95px;
     border-radius:18px;
     object-fit:cover;
 }
+
+/* INFO */
+
 .middle{
     flex:1;
     display:flex;
     flex-direction:column;
-    gap:12px;
+    justify-content:space-between;
 }
+
 .middle h2{
     font-size:18px;
     line-height:1.4;
+    margin-bottom:10px;
     font-weight:600;
 }
+
+/* OPTIONS */
+
 .cart-options{
     display:flex;
     gap:10px;
+    margin-bottom:14px;
 }
+
 .option-box{
     display:flex;
     flex-direction:column;
     gap:5px;
 }
+
 .option-box label{
     font-size:11px;
     color:#777;
+    letter-spacing:1px;
 }
+
 .option-box select{
     width:90px;
-    height:40px;
+    height:38px;
     border:none;
     border-radius:12px;
-    background:#171717;
+    background:#181818;
     color:white;
     padding:0 10px;
     font-size:13px;
     outline:none;
 }
+
+/* PRICE + QUANTITY */
+
 .bottom-row{
     display:flex;
     align-items:center;
     justify-content:space-between;
-    margin-top:4px;
 }
+
 .price{
-    font-size:18px;
+    font-size:20px;
     font-weight:700;
     color:#d4af37;
 }
+
 .quantity-box{
     display:flex;
     align-items:center;
     gap:10px;
 }
+
 .qty-btn{
     width:32px;
     height:32px;
@@ -252,38 +185,49 @@ body{
     font-weight:700;
     transition:.3s;
 }
+
 .qty-btn:hover{
     background:#d4af37;
 }
+
 .qty-number{
     font-size:15px;
     font-weight:600;
 }
+
+/* TOTAL */
+
 .total-box{
     margin-top:28px;
     background:#0f0f0f;
-    border:1px solid #1d1d1d;
+    border:1px solid #1b1b1b;
     border-radius:30px;
-    padding:28px;
+    padding:26px;
 }
+
 .total-top{
     display:flex;
     align-items:center;
     justify-content:space-between;
     margin-bottom:22px;
 }
+
 .total-top span{
     color:#777;
-    letter-spacing:2px;
     font-size:13px;
+    letter-spacing:2px;
 }
+
 .total-top h2{
     font-size:30px;
     color:#d4af37;
 }
+
+/* CHECKOUT */
+
 .checkout-btn{
     width:100%;
-    height:62px;
+    height:60px;
     border-radius:18px;
     background:white;
     color:black;
@@ -294,48 +238,202 @@ body{
     font-size:16px;
     font-weight:700;
     transition:.3s;
-    box-shadow:0 0 30px rgba(255,255,255,.05);
 }
+
 .checkout-btn:hover{
     background:#d4af37;
     transform:translateY(-2px);
 }
+
+/* MOBILE */
+
 @media(max-width:700px){
+
     .cart-title{
-        font-size:30px;
+        font-size:32px;
     }
+
     .cart-item{
         padding:14px;
         gap:12px;
     }
-    .left{
-        width:75px;
-    }
+
     .product-image{
-        width:75px;
-        height:75px;
-    }
-    .middle h2{
-        font-size:16px;
-    }
-    .option-box select{
         width:78px;
-        height:36px;
+        height:78px;
+    }
+
+    .middle h2{
+        font-size:15px;
+    }
+
+    .option-box select{
+        width:76px;
+        height:34px;
         font-size:12px;
     }
+
     .price{
-        font-size:16px;
+        font-size:17px;
     }
+
     .qty-btn{
         width:28px;
         height:28px;
     }
+
     .total-top h2{
         font-size:24px;
     }
-    }
+
+}
 
 </style>
+
 </head>
+
+<body>
+
+<div class="top-logo">
+
+    <a href="{% url 'home' %}"
+       class="logo">
+
+       LUSSO®️
+
+    </a>
+
+</div>
+
+<div class="cart-container">
+
+    <div class="cart-box">
+
+        <h1 class="cart-title">
+
+            YOUR CART
+
+        </h1>
+
+        {% for item in items %}
+
+        <div class="cart-item">
+
+            <img src="{{ item.product.image.url }}"
+                 class="product-image">
+
+            <div class="middle">
+
+                <h2>
+
+                    {{ item.product.name }}
+
+                </h2>
+
+                <div class="cart-options">
+
+                    <div class="option-box">
+
+                        <label>SIZE</label>
+
+                        <select>
+
+                            <option {% if item.size == "S" %}selected{% endif %}>S</option>
+                            <option {% if item.size == "M" %}selected{% endif %}>M</option>
+                            <option {% if item.size == "L" %}selected{% endif %}>L</option>
+                            <option {% if item.size == "XL" %}selected{% endif %}>XL</option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="option-box">
+
+                        <label>COLOR</label>
+
+                        <select>
+
+                            <option {% if item.color == "Black" %}selected{% endif %}>Black</option>
+                            <option {% if item.color == "White" %}selected{% endif %}>White</option>
+                            <option {% if item.color == "Gray" %}selected{% endif %}>Gray</option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+                <div class="bottom-row">
+
+                    <span class="price">
+
+                        {{ item.product.price }} LE
+
+                    </span>
+
+                    <div class="quantity-box">
+
+                        <a href="{% url 'decrease_quantity' item.key %}"
+                           class="qty-btn">
+
+                            -
+
+                        </a>
+
+                        <span class="qty-number">
+
+                            {{ item.quantity }}
+
+                        </span>
+
+                        <a href="{% url 'increase_quantity' item.key %}"
+                           class="qty-btn">
+
+                            +
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+        <div class="total-box">
+
+            <div class="total-top">
+
+                <span>
+
+                    TOTAL
+
+                </span>
+
+                <h2>
+
+                    {{ total }} LE
+
+                </h2>
+
+            </div>
+
+            <a href="{% url 'checkout' %}"
+               class="checkout-btn">
+
+               SECURE CHECKOUT
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
 </body>
+
 </html>
