@@ -907,6 +907,56 @@ body{
         .about-slider img.active{
             opacity:1;
         }
+
+        /* SIDE MENU */
+.side-menu{
+    position:fixed;
+    top:0;
+    right:-100%;
+    width:320px;
+    height:100vh;
+    background:#090909;
+    z-index:99999;
+    padding:40px 30px;
+    display:flex;
+    flex-direction:column;
+    gap:25px;
+    transition:.4s;
+    border-left:1px solid #222;
+}
+.side-menu.active{
+    right:0;
+}
+.menu-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:30px;
+}
+.menu-top h2{
+    color:#d4af37;
+    font-size:36px;
+    letter-spacing:4px;
+}
+.menu-top button{
+    background:none;
+    border:none;
+    color:white;
+    font-size:28px;
+    cursor:pointer;
+}
+.side-menu a{
+    color:white;
+    text-decoration:none;
+    font-size:20px;
+    font-weight:600;
+    transition:.3s;
+}
+.side-menu a:hover{
+    color:#d4af37;
+    transform:translateX(6px);
+}
+
 </style>
 </head>
 <body>
@@ -945,10 +995,63 @@ body{
         </span>
     </a>
     <!-- MENU -->
-    <button class="menu-btn">
-        ☰
-    </button>
+    <button class="menu-btn"
+        onclick="openMenu()">
+
+    ☰
+
+</button>
 </div>
+
+<!-- MENU -->
+
+<div class="side-menu"
+     id="sideMenu">
+
+    <div class="menu-top">
+
+        <h2>LUSSO</h2>
+
+        <button onclick="closeMenu()">
+
+            ✕
+
+        </button>
+
+    </div>
+
+    <a href="#products">
+
+        MEN
+
+    </a>
+
+    <a href="#products">
+
+        WOMEN
+
+    </a>
+
+    <a href="#products">
+
+        CLASSIC
+
+    </a>
+
+    <a href="#about">
+
+        ABOUT
+
+    </a>
+
+    <a href="#contact">
+
+        CONTACT
+
+    </a>
+
+</div>
+
 </nav>
 <!-- HERO -->
 <section class="hero">
@@ -1097,5 +1200,19 @@ setInterval(() => {
     slides[index].classList.add("active");
 }, 3000);
 </script>
+
+<script>
+function openMenu(){
+    document
+    .getElementById("sideMenu")
+    .classList.add("active");
+}
+function closeMenu(){
+    document
+    .getElementById("sideMenu")
+    .classList.remove("active");
+}
+</script>
+
 </body>
 </html>
