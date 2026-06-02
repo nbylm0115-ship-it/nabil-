@@ -1,548 +1,330 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
-    <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <title>{{ product.name }}</title>
-
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
-          rel="stylesheet">
-
-   <style>
-
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+<title>{{ product.name }}</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet">
+<style>
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
     font-family:'Poppins',sans-serif;
 }
-
 body{
     background:
     radial-gradient(circle at top,#1a1a1a 0%,#0a0a0a 45%,#050505 100%);
     color:white;
     overflow-x:hidden;
 }
-
-/* CONTAINER */
-
-.container{
-    width:90%;
-    max-width:1400px;
-    margin:auto;
-    min-height:100vh;
-    display:flex;
-    align-items:center;
-    padding-top:140px;
-    padding-bottom:60px;
-}
-
-/* PRODUCT PAGE */
-
-.product-page{
-    width:100%;
-    display:grid;
-    grid-template-columns:1.05fr 1fr;
-    gap:70px;
-    align-items:center;
-}
-
-/* IMAGE */
-
-.product-image{
-    width:100%;
-    background:#fff;
-    border-radius:38px;
-    padding:24px;
-    overflow:hidden;
-    position:relative;
-    box-shadow:
-    0 0 60px rgba(0,0,0,.45);
-}
-
-.product-image::before{
-    content:'';
-    position:absolute;
-    inset:0;
-    background:
-    linear-gradient(to bottom,
-    rgba(255,255,255,.04),
-    transparent);
-    pointer-events:none;
-}
-
-.product-image img{
-    width:100%;
-    height:520px;
-    object-fit:cover;
-    border-radius:28px;
-    transition:.5s;
-}
-
-.product-image:hover img{
-    transform:scale(1.03);
-}
-
-/* INFO */
-
-.product-info{
-    padding:10px;
-}
-
 /* LOGO */
-
 .top-logo{
-    position:relative;
-    top:25;
+    position:fixed;
+    top:0;
     left:0;
     width:100%;
+    height:85px;
     display:flex;
     justify-content:center;
-    padding-top:48px;
-    z-index:999;
+    align-items:center;
+    z-index:9999;
+    background:linear-gradient(to bottom,
+    rgba(0,0,0,.7),
+    transparent);
+    backdrop-filter:blur(10px);
 }
-
 .logo{
     text-decoration:none;
     color:white;
-    font-size:42px;
+    font-size:34px;
     font-weight:800;
-    letter-spacing:10px;
+    letter-spacing:8px;
     transition:.3s;
 }
-
 .logo:hover{
     color:#d4af37;
-    transform:translateY(-2px);
 }
-
-/* TITLE */
-
+/* CART */
+.cart-icon{
+    position:absolute;
+    right:22px;
+    width:48px;
+    height:48px;
+    border-radius:50%;
+    background:#111;
+    border:1px solid #2a2a2a;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-decoration:none;
+    color:white;
+    font-size:22px;
+    transition:.3s;
+}
+.cart-icon:hover{
+    background:#d4af37;
+    color:black;
+}
+.cart-count{
+    position:absolute;
+    top:-5px;
+    right:-5px;
+    min-width:22px;
+    height:22px;
+    border-radius:50%;
+    background:#d4af37;
+    color:black;
+    font-size:11px;
+    font-weight:700;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+/* CONTAINER */
+.container{
+    width:90%;
+    max-width:520px;
+    margin:auto;
+    padding-top:120px;
+    padding-bottom:60px;
+}
+/* PRODUCT IMAGE */
+.product-image{
+    width:100%;
+    background:white;
+    border-radius:35px;
+    padding:18px;
+    margin-bottom:30px;
+    overflow:hidden;
+}
+.product-image img{
+    width:100%;
+    height:430px;
+    object-fit:cover;
+    border-radius:24px;
+}
+/* PRODUCT INFO */
 .product-info h1{
-    font-size:68px;
-    line-height:1;
-    margin-bottom:18px;
+    font-size:52px;
+    line-height:1.1;
+    margin-bottom:22px;
     font-weight:800;
-    letter-spacing:-2px;
 }
-
-/* PRICE */
-
 .price{
-    font-size:48px;
+    font-size:42px;
     color:#d4af37;
     font-weight:700;
-    margin-bottom:28px;
+    margin:25px 0;
 }
-
-/* DESCRIPTION */
-
 .desc{
     color:#8f8f8f;
     line-height:1.9;
-    font-size:15px;
-    margin-bottom:45px;
-    max-width:420px;
+    font-size:16px;
+    margin-bottom:35px;
 }
-
-/* SECTION TITLE */
-
+/* TITLES */
 .section-title{
     font-size:12px;
     letter-spacing:5px;
     color:#666;
-    margin-bottom:18px;
+    margin-bottom:16px;
 }
-
-/* SIZE + COLORS */
-
+/* SIZE + COLOR */
 .sizes,
 .colors{
     display:flex;
     gap:14px;
-    margin-bottom:38px;
-    flex-wrap:wrap;
+    margin-bottom:35px;
 }
-
-/* SIZE BUTTON */
-
+/* SIZE BTN */
 .size-btn{
-    min-width:72px;
-    height:72px;
-    padding:0 24px;
-    border-radius:22px;
-    border:1px solid #262626;
+    min-width:68px;
+    height:68px;
+    border-radius:20px;
+    border:1px solid #2a2a2a;
     background:#121212;
     color:white;
-    cursor:pointer;
     font-size:18px;
     font-weight:600;
+    cursor:pointer;
     transition:.3s;
 }
-
-.size-btn:hover{
-    border-color:#d4af37;
-    transform:translateY(-3px);
-    box-shadow:0 0 25px rgba(255,255,255,.06);
-}
-
 .size-btn.active{
     background:white;
     color:black;
-    border-color:white;
 }
-
-/* COLOR BUTTONS */
-
+.size-btn:hover{
+    border-color:#d4af37;
+}
+/* COLOR BTN */
 .color-btn{
-    width:58px;
-    height:58px;
+    width:54px;
+    height:54px;
     border-radius:50%;
+    border:none;
     cursor:pointer;
     transition:.3s;
-    border:none;
 }
-
 .color-btn.white{
     background:white;
-    border:2px solid #999;
+    border:2px solid #888;
 }
-
 .color-btn.black{
     background:black;
 }
-
 .color-btn.gray{
-    background:#9f9f9f;
+    background:gray;
 }
-
-.color-btn:hover{
-    transform:scale(1.1);
-}
-
 .color-btn.active{
     border:3px solid white;
-    transform:scale(1.13);
+    transform:scale(1.1);
 }
-
 /* BUTTON */
-
 .add-btn{
     width:100%;
-    height:74px;
+    height:68px;
     border:none;
-    border-radius:24px;
+    border-radius:22px;
     background:white;
     color:black;
     font-size:17px;
     font-weight:700;
     cursor:pointer;
-    transition:.35s;
-    margin-top:15px;
+    transition:.3s;
+    margin-top:10px;
 }
-
 .add-btn:hover{
-    transform:translateY(-3px);
     background:#d4af37;
-    box-shadow:0 0 30px rgba(212,175,55,.2);
+    transform:translateY(-2px);
 }
-
-/* MOBILE */
-
-@media(max-width:1000px){
-
-    .container{
-        width:92%;
-        padding-top:120px;
-        padding-bottom:60px;
-    }
-
-    .product-page{
-        display:flex;
-        flex-direction:column;
-        gap:30px;
-    }
-
-    .product-image{
-        width:100%;
-        padding:16px;
-        border-radius:30px;
-    }
-
-    .product-image img{
-        width:100%;
-        height:360px;
-        object-fit:cover;
-        border-radius:20px;
-    }
-
-    .product-info{
-        width:100%;
-        padding:0;
-    }
-
-    .product-info h1{
-        font-size:48px;
-        line-height:1.1;
-        margin-bottom:18px;
-    }
-
-    .price{
-        font-size:42px;
-        margin:25px 0;
-    }
-
-    .desc{
-        font-size:16px;
-        line-height:1.9;
-        max-width:100%;
-        margin-bottom:35px;
-    }
-
-    .sizes,
-    .colors{
-        gap:12px;
-        margin-bottom:30px;
-    }
-
-    .size-btn{
-        min-width:62px;
-        height:62px;
-        border-radius:18px;
-        font-size:16px;
-    }
-
-    .color-btn{
-        width:50px;
-        height:50px;
-    }
-
-    .add-btn{
-        width:100%;
-        height:65px;
-        border-radius:18px;
-        font-size:16px;
-        margin-top:10px;
-    }
-
-    .top-logo{
-        padding-top:28px;
-    }
-
-    .logo{
-        font-size:30px;
-        letter-spacing:6px;
-    }
-
-}
-
 </style>
-
 </head>
-
 <body>
-
-   <div class="top-logo">
-
+<!-- LOGO -->
+<div class="top-logo">
     <a href="{% url 'home' %}"
        class="logo">
-
-       LUSSO®️
-
+        LUSSO®️
     </a>
-
     <a href="{% url 'cart' %}"
        class="cart-icon">
-
         🛒
-
         <span class="cart-count">
-
             {{ request.session.cart|length }}
-
         </span>
-
     </a>
-
 </div>
-
+<!-- CONTAINER -->
 <div class="container">
-
-    <div class="product-page">
-
-        <!-- IMAGE -->
-
-        <div class="product-image">
-
-           <img id="mainImage"
-src="{{ product.image.url }}"
-alt="{{ product.name }}">
-     
+    <!-- IMAGE -->
+    <div class="product-image">
+        <img id="mainImage"
+             src="{{ product.image.url }}"
+             alt="{{ product.name }}">
+    </div>
+    <!-- INFO -->
+    <div class="product-info">
+        <h1>
+            {{ product.name }}
+        </h1>
+        <!-- SIZE -->
+        <div class="section-title">
+            SELECT SIZE
         </div>
-
-        <!-- INFO -->
-
-            <h1>
-
-                {{ product.name }}
-
-            </h1>
-
-            <form action="{% url 'add_to_cart' product.id %}"
-                  method="GET">
-
-                <!-- SIZE -->
-
-                <div class="section-title">
-
-                    SELECT SIZE
-
-                </div>
-
-                <div class="sizes">
-
-                    <button type="button"
-                            class="size-btn active"
-                            onclick="selectSize(this,'M')">
-
-                        M
-
-                    </button>
-
-                    <button type="button"
-                            class="size-btn"
-                            onclick="selectSize(this,'L')">
-
-                        L
-
-                    </button>
-
-                    <button type="button"
-                            class="size-btn"
-                            onclick="selectSize(this,'XL')">
-
-                        XL
-
-                    </button>
-
-                </div>
-
-                <input type="hidden"
-                       name="size"
-                       id="selectedSize"
-                       value="M">
-
-                <!-- COLORS -->
-
-                <div class="section-title">
-
-                    SELECT COLOR
-
-                </div>
-
-                <div class="colors">
-
-                    <button type="button"
-                    class="color-btn white"
-                    onclick="selectColor(this,'White','{{ product.white_image.url }}')">
-                    </button>
-
-                    <button type="button"
-                    class="color-btn black"
-                    onclick="selectColor(this,'Black','{{ product.black_image.url }}')">
-                    </button>
-
-                    <button type="button"
-                    class="color-btn gray"
-                    onclick="selectColor(this,'Grey','{{ product.grey_image.url }}')">
-                    </button>
-
-                </div>
-
-                <input type="hidden"
-                       name="color"
-                       id="selectedColor"
-                       value="Black">
-                       
-            </div>
-
+        <div class="sizes">
+            <button type="button"
+                    class="size-btn active"
+                    onclick="selectSize(this,'M')">
+                M
+            </button>
+            <button type="button"
+                    class="size-btn"
+                    onclick="selectSize(this,'L')">
+                L
+            </button>
+            <button type="button"
+                    class="size-btn"
+                    onclick="selectSize(this,'XL')">
+                XL
+            </button>
+        </div>
+        <!-- COLORS -->
+        <div class="section-title">
+            SELECT COLOR
+        </div>
+        <div class="colors">
+            <button type="button"
+            class="color-btn white"
+            onclick="selectColor(this,'White','{{ product.white_image.url }}')">
+            </button>
+            <button type="button"
+            class="color-btn black active"
+            onclick="selectColor(this,'Black','{{ product.black_image.url }}')">
+            </button>
+            <button type="button"
+            class="color-btn gray"
+            onclick="selectColor(this,'Gray','{{ product.grey_image.url }}')">
+            </button>
+        </div>
+        <!-- FORM -->
+        <form action="{% url 'add_to_cart' product.id %}"
+              method="GET">
+            <input type="hidden"
+                   name="size"
+                   id="selectedSize"
+                   value="M">
+            <input type="hidden"
+                   name="color"
+                   id="selectedColor"
+                   value="Black">
+            <!-- PRICE -->
             <div class="price">
-
                 {{ product.price }} LE
-
             </div>
-
+            <!-- DESCRIPTION -->
             <div class="desc">
-
                 Premium oversized t-shirt with luxury fit.
                 Made with soft cotton fabric for maximum comfort
                 and clean streetwear look.
-
-                </div>
-
-                <!-- BUTTON -->
-
-                <button type="submit" class="add-btn">
-                    ADD TO CART
-                </button>
-
-            </form>
-
-        </div>
-
+            </div>
+            <!-- BUTTON -->
+            <button type="submit"
+                    class="add-btn">
+                ADD TO CART
+            </button>
+        </form>
     </div>
-
 </div>
-
 <script>
-
 function selectSize(element,size){
-
     document
     .querySelectorAll('.size-btn')
     .forEach(btn=>{
-
         btn.classList.remove('active');
-
     });
-
     element.classList.add('active');
-
     document
     .getElementById('selectedSize')
     .value=size;
 }
-
-function selectColor(element, color, image){
-
+function selectColor(element,color,image){
     document
     .querySelectorAll('.color-btn')
-    .forEach(btn => {
-
+    .forEach(btn=>{
         btn.classList.remove('active');
-
     });
-
     element.classList.add('active');
-
     document
     .getElementById('selectedColor')
-    .value = color;
-
+    .value=color;
     document
     .getElementById('mainImage')
-    .src = image;
+    .src=image;
 }
-
 </script>
-
 </body>
-
 </html>
