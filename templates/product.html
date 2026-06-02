@@ -363,20 +363,6 @@ alt="{{ product.name }}">
 
             </h1>
 
-            <div class="price">
-
-                {{ product.price }} LE
-
-            </div>
-
-            <div class="desc">
-
-                Premium oversized t-shirt with luxury fit.
-                Made with soft cotton fabric for maximum comfort
-                and clean streetwear look.
-
-            </div>
-
             <form action="{% url 'add_to_cart' product.id %}"
                   method="GET">
 
@@ -453,28 +439,22 @@ alt="{{ product.name }}">
                        id="selectedColor"
                        value="Black">
 
+                       
+            <div class="price">
+
+                {{ product.price }} LE
+
+            </div>
+
+            <div class="desc">
+
+                Premium oversized t-shirt with luxury fit.
+                Made with soft cotton fabric for maximum comfort
+                and clean streetwear look.
+
+            </div>
+
                 <!-- BUTTON -->
-
-                <div class="product-options">
-
-                    <label>Choose Size</label>
-
-                    <select>
-                        <option>S</option>
-                        <option>M</option>
-                        <option>L</option>
-                        <option>XL</option>
-                    </select>
-
-                    <label>Choose Color</label>
-
-                    <select>
-                        <option>Black</option>
-                        <option>White</option>
-                        <option>Gray</option>
-                    </select>
-
-                </div>
 
                 <button type="submit" class="add-btn">
                     ADD TO CART
