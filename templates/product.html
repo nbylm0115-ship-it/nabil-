@@ -330,12 +330,25 @@ body{
 
 <body>
 
-    <div class="top-logo">
+   <div class="top-logo">
 
     <a href="{% url 'home' %}"
        class="logo">
 
-       LUSSO®
+       LUSSO®️
+
+    </a>
+
+    <a href="{% url 'cart' %}"
+       class="cart-icon">
+
+        🛒
+
+        <span class="cart-count">
+
+            {{ request.session.cart|length }}
+
+        </span>
 
     </a>
 
@@ -438,8 +451,9 @@ alt="{{ product.name }}">
                        name="color"
                        id="selectedColor"
                        value="Black">
-
                        
+            </div>
+
             <div class="price">
 
                 {{ product.price }} LE
@@ -452,7 +466,7 @@ alt="{{ product.name }}">
                 Made with soft cotton fabric for maximum comfort
                 and clean streetwear look.
 
-            </div>
+                </div>
 
                 <!-- BUTTON -->
 
