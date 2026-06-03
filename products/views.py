@@ -7,7 +7,7 @@ def home(request):
 
     products = Product.objects.all()
 
-    return render(request, 'home.html', {
+    return render(request, 'new_home.html', {
         'products': products
     })
 
