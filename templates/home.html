@@ -474,17 +474,13 @@ footer p{
     min-width:280px;
 }
 .product-grid{
-    display:flex;
-    overflow-x:auto;
-    gap:18px;
-    scroll-snap-type:x mandatory;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
 }
-.product-grid::-webkit-scrollbar{
-    display:none;
-}
+
 .product-card{
-    min-width:85%;
-    scroll-snap-align:start;
+    min-width:unset;
 }
 .buttons{
     flex-direction:column;
