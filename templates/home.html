@@ -451,6 +451,35 @@ footer p{
     font-size:34px;
     z-index:99999;
 }
+
+/* OFFERS */
+.offers{
+    padding:110px 5%;
+    background:white;
+}
+
+.offer-slider{
+    position:relative;
+    width:100%;
+    height:500px;
+    border-radius:30px;
+    overflow:hidden;
+}
+
+.offer-slider img{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    opacity:0;
+    transition:1s;
+}
+
+.offer-slider img.active{
+    opacity:1;
+}
+
 /* MOBILE */
 @media(max-width:900px){
 .nav-links{
@@ -580,6 +609,22 @@ SHOP NOW
 </div>
 </div>
 </section>
+
+<section class="offers">
+
+    <div class="section-title">
+        <h2>SPECIAL OFFERS</h2>
+        <p>LIMITED TIME DEALS</p>
+    </div>
+
+    <div class="offer-slider">
+        <img src="{% static 'images/men.jpg' %}" class="active">
+        <img src="{% static 'images/women.jpg' %}">
+        <img src="{% static 'images/classic.jpg' %}">
+    </div>
+
+</section>
+
 <!-- PRODUCTS -->
 <section class="products"
 id="products">
@@ -690,6 +735,27 @@ index =
 slides[index]
 .classList.add("active");
 },3000);
+
+<script>
+const offerSlides =
+document.querySelectorAll(".offer-slider img");
+
+let offerIndex = 0;
+
+setInterval(() => {
+
+offerSlides[offerIndex]
+.classList.remove("active");
+
+offerIndex =
+(offerIndex + 1) % offerSlides.length;
+
+offerSlides[offerIndex]
+.classList.add("active");
+
+},3000);
+</script>
+
 </script>
 </body>
 </html>
