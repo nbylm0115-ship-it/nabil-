@@ -25,7 +25,11 @@ SECRET_KEY = 'django-insecure-clb1u7olwm*1zg*+weptx7u0ui7q396i(ngt0=ywe6(k7_fc&j
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "lussostore.pythonanywhere.com",
+    "127.0.0.1",
+    "localhost",
+]
 
 
 # Application definition
