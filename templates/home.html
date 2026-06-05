@@ -2,247 +2,799 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LUSSO</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- Swiper CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <style>
-        * { margin:0; padding:0; box-sizing:border-box; scroll-behavior:smooth; }
-        body { font-family:'Poppins',sans-serif; background:#0b0b0b; overflow-x:hidden; }
-        
-        /* [ ... جميع الستايلات السابقة للنافبار، الهيرو، الكاتيجوري ... ] */
-        .top-bar { width:100%; height:42px; background:#d4af37; color:black; display:flex; align-items:center; overflow:hidden; position:fixed; top:0; left:0; z-index:99999; }
-        .top-bar span { white-space:nowrap; font-size:13px; font-weight:700; letter-spacing:2px; padding-left:100%; animation:marquee 15s linear infinite; }
-        @keyframes marquee { 0% { transform:translateX(0); } 100% { transform:translateX(-100%); } }
-        .navbar { width:100%; height:88px; padding:0 5%; background:rgba(0,0,0,.65); backdrop-filter:blur(12px); display:flex; justify-content:space-between; align-items:center; position:fixed; top:42px; left:0; z-index:9999; }
-        .logo { color:white; text-decoration:none; font-size:34px; font-weight:800; letter-spacing:6px; }
-        .nav-links { display:flex; gap:35px; }
-        .nav-links a { color:white; text-decoration:none; font-size:15px; transition:.3s; }
-        .nav-links a:hover { color:#d4af37; }
-        .nav-right { display:flex; align-items:center; gap:14px; }
-        .cart-btn { width:50px; height:50px; border-radius:50%; background:#111; border:1px solid #222; display:flex; justify-content:center; align-items:center; color:white; text-decoration:none; font-size:20px; position:relative; transition:.3s; }
-        .cart-btn:hover { background:#d4af37; color:black; }
-        .cart-count { position:absolute; top:-5px; right:-5px; width:22px; height:22px; border-radius:50%; background:#d4af37; color:black; font-size:11px; font-weight:700; display:flex; justify-content:center; align-items:center; }
-        .menu-btn { width:48px; height:48px; border:none; border-radius:50%; background:#111; border:1px solid #222; color:white; font-size:22px; cursor:pointer; transition:.3s; }
-        .menu-btn:hover { background:#d4af37; color:black; }
-        
-        /* SIDE MENU */
-        .side-menu { position:fixed; top:0; right:-100%; width:300px; height:100vh; background:#111; padding:40px 30px; display:flex; flex-direction:column; gap:25px; transition:.4s; z-index:999999; }
-        .side-menu.active { right:0; }
-        .menu-top { display:flex; justify-content:space-between; align-items:center; margin-bottom:30px; }
-        .menu-top h2 { color:#d4af37; font-size:34px; letter-spacing:4px; }
-        .menu-top button { background:none; border:none; color:white; font-size:28px; cursor:pointer; }
-        .side-menu a { color:white; text-decoration:none; font-size:22px; font-weight:700; transition:.3s; }
-        .side-menu a:hover { color:#d4af37; transform:translateX(5px); }
-        
-        /* HERO */
-        .hero { min-height:100vh; background:linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.55)), url("/static/images/bg.jpg"); background-size:cover; background-position:center; display:flex; justify-content:center; align-items:center; text-align:center; padding:180px 20px 100px; }
-        .hero-content { color:white; max-width:850px; }
-        .hero-content h1 { font-size:90px; line-height:1; margin-bottom:25px; font-weight:800; }
-        .hero-content p { color:#ddd; font-size:20px; margin-bottom:35px; line-height:1.8; }
-        .hero-btn { background:#d4af37; color:black; padding:16px 40px; border-radius:14px; text-decoration:none; font-weight:700; display:inline-block; transition:.3s; }
-        
-        /* CATEGORIES */
-        .categories { padding:90px 5%; background:#0b0b0b; display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
-        .category-card { position:relative; height:260px; border-radius:28px; overflow:hidden; }
-        .category-card img { width:100%; height:100%; object-fit:cover; transition:.5s; }
-        .category-card:hover img { transform:scale(1.08); }
-        .category-overlay { position:absolute; inset:0; background:linear-gradient(to top, rgba(0,0,0,.7), transparent); display:flex; align-items:flex-end; padding:28px; }
-        .category-overlay h2 { color:white; font-size:34px; font-weight:800; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        /* PRODUCT SLIDER (تعديل ليكون Swiper) */
-        .products { padding:110px 5%; background:#f5f5f5; }
-        .section-title { text-align:center; margin-bottom:60px; }
-        .section-title h2 { color:black; font-size:58px; margin-bottom:10px; font-weight:800; }
-        .product-card { background:white; border-radius:28px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,.08); }
-        .product-image { height:320px; overflow:hidden; }
-        .product-image img { width:100%; height:100%; object-fit:cover; }
-        .product-info { padding:24px; }
-        .badge { background:black; color:white; padding:6px 14px; border-radius:30px; font-size:11px; font-weight:700; }
-        .product-info h3 { color:black; font-size:25px; margin:18px 0 10px; }
-        .price { color:black; font-size:24px; font-weight:800; margin-bottom:20px; }
-        .buttons { display:flex; gap:10px; }
-        .view-btn, .add-btn { flex:1; text-align:center; padding:14px; border-radius:14px; text-decoration:none; font-weight:700; transition:.3s; }
-        .view-btn { background:#f1f1f1; color:black; }
-        .add-btn { background:black; color:white; }
+<title>LUSSO</title>
 
-        .offer-banner{
-            max-width:1200px;
-            height:450px;
-            margin:auto;
-            border-radius:30px;
-            overflow:hidden;
-        }
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-        .offer-banner img{
-            width:100%;
-            height:100%;
-            object-fit:cover;
-        }
+<style>
 
-        /* FOOTER & WHATSAPP */
-        footer { background:black; padding:80px 5%; text-align:center; }
-        footer h1 { color:#d4af37; font-size:42px; margin-bottom:15px; letter-spacing:5px; }
-        .whatsapp { position:fixed; bottom:25px; right:22px; width:65px; height:65px; border-radius:50%; background:#25d366; display:flex; justify-content:center; align-items:center; color:white; text-decoration:none; font-size:34px; z-index:99999; }
-   
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+scroll-behavior:smooth;
+}
+
+body{
+background:#0b0b0b;
+overflow-x:hidden;
+}
+
+:root{
+--gold:#d4af37;
+--black:#0b0b0b;
+--white:#ffffff;
+--gray:#888;
+}
+
+.top-bar{
+height:40px;
+background:var(--gold);
+display:flex;
+align-items:center;
+overflow:hidden;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+z-index:99999;
+}
+
+.top-bar span{
+white-space:nowrap;
+padding-left:100%;
+font-weight:700;
+animation:move 15s linear infinite;
+}
+
+@keyframes move{
+0%{transform:translateX(0);}
+100%{transform:translateX(-100%);}
+}
+
+.navbar{
+position:fixed;
+top:40px;
+left:0;
+width:100%;
+height:85px;
+background:rgba(0,0,0,.75);
+backdrop-filter:blur(15px);
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:0 6%;
+z-index:9999;
+}
+
+.logo{
+text-decoration:none;
+color:white;
+font-size:34px;
+font-weight:900;
+letter-spacing:6px;
+}
+
+.nav-links{
+display:flex;
+gap:35px;
+}
+
+.nav-links a{
+color:white;
+text-decoration:none;
+font-weight:500;
+transition:.3s;
+}
+
+.nav-links a:hover{
+color:var(--gold);
+}
+
+.nav-right{
+display:flex;
+align-items:center;
+gap:12px;
+}
+
+.cart-btn{
+width:50px;
+height:50px;
+border-radius:50%;
+background:#111;
+display:flex;
+justify-content:center;
+align-items:center;
+color:white;
+text-decoration:none;
+position:relative;
+}
+
+.cart-count{
+position:absolute;
+top:-5px;
+right:-5px;
+width:20px;
+height:20px;
+border-radius:50%;
+background:var(--gold);
+color:black;
+font-size:11px;
+font-weight:700;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.hero{
+height:100vh;
+background:
+linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.65)),
+url("{% static 'images/bg.jpg' %}");
+background-size:cover;
+background-position:center;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:0 20px;
+}
+
+.hero-content{
+max-width:900px;
+}
+
+.hero-tag{
+display:inline-block;
+background:var(--gold);
+padding:10px 20px;
+border-radius:50px;
+font-size:13px;
+font-weight:700;
+margin-bottom:25px;
+}
+
+.hero h1{
+font-size:90px;
+font-weight:900;
+color:white;
+line-height:1;
+margin-bottom:25px;
+}
+
+.hero p{
+color:#ddd;
+font-size:20px;
+max-width:700px;
+margin:auto;
+margin-bottom:35px;
+}
+
+.hero-btn{
+background:var(--gold);
+color:black;
+padding:16px 45px;
+border-radius:50px;
+text-decoration:none;
+font-weight:700;
+}
+
+.section{
+padding:100px 6%;
+}
+
+.section-title{
+text-align:center;
+margin-bottom:60px;
+}
+
+.section-title h2{
+font-size:55px;
+color:white;
+font-weight:900;
+}
+
+.section-title p{
+color:#aaa;
+margin-top:10px;
+}
+
+.categories-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:20px;
+}
+
+.category-card{
+height:350px;
+border-radius:25px;
+overflow:hidden;
+position:relative;
+}
+
+.category-card img{
+width:100%;
+height:100%;
+object-fit:cover;
+transition:.5s;
+}
+
+.category-card:hover img{
+transform:scale(1.08);
+}
+
+.category-overlay{
+position:absolute;
+inset:0;
+background:linear-gradient(to top,rgba(0,0,0,.8),transparent);
+display:flex;
+align-items:flex-end;
+padding:30px;
+}
+
+.category-overlay h2{
+color:white;
+font-size:36px;
+font-weight:800;
+}
+
+.why{
+background:#111;
+}
+
+.why-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:25px;
+}
+
+.why-card{
+background:#181818;
+padding:40px;
+border-radius:25px;
+text-align:center;
+}
+
+.why-card i{
+font-size:40px;
+color:var(--gold);
+margin-bottom:20px;
+}
+
+.why-card h3{
+color:white;
+margin-bottom:10px;
+}
+
+.why-card p{
+color:#aaa;
+}
+
 @media(max-width:900px){
 
-    .hero-content h1{
-        font-size:50px;
-    }
+.nav-links{
+display:none;
+}
 
-    .hero-content p{
-        font-size:16px;
-    }
+.hero h1{
+font-size:52px;
+}
 
-    .categories{
-        grid-template-columns:1fr;
-        gap:15px;
-    }
+.categories-grid,
+.why-grid{
+grid-template-columns:1fr;
+}
 
-    .category-card{
-        height:200px;
-    }
-
-    .category-overlay h2{
-        font-size:26px;
-    }
-
-    .offer-banner{
-        height:250px;
-    }
-
-    .section-title h2{
-        font-size:34px;
-    }
-
-    .products{
-        padding:70px 5%;
-    }
+.section-title h2{
+font-size:36px;
+}
 
 }
 
-   </style>
+</style>
 </head>
+
 <body>
-    <!-- TOP BAR -->
-    <div class="top-bar"><span>FREE SHIPPING ON ORDERS OVER 2000LE 🔥 NEW COLLECTION OUT NOW 🔥</span></div>
-    
-    <!-- NAVBAR -->
-    <div class="nav-links">
-        <a href="#categories">Categories</a>
-        <a href="#offers">Offers</a>
-        <a href="#products">Shop</a>
-        <a href="#contact">Contact</a>
-    </div>
-    </nav>
 
-    <!-- SIDE MENU -->
-    <div class="side-menu" id="sideMenu">
-        <div class="menu-top"><h2>LUSSO</h2><button onclick="closeMenu()">✕</button></div>
-        <a href="#products">MEN</a><a href="#products">WOMEN</a><a href="#products">CLASSIC</a><a href="#about">ABOUT</a><a href="#contact">CONTACT</a>
-    </div>
+<div class="top-bar">
+<span>
+FREE SHIPPING OVER 2000 EGP • NEW DROP 2026 • LUSSO STREETWEAR
+</span>
+</div>
 
-    <!-- HERO -->
-    <section class="hero"><div class="hero-content"><h1>lusso test 999</h1><p>Luxury Streetwear For The New Generation</p><a href="#products" class="hero-btn">SHOP NOW</a></div></section>
+<nav class="navbar">
 
-    <!-- CATEGORIES -->
+<a href="{% url 'home' %}" class="logo">
+LUSSO
+</a>
 
-<section class="categories" id="categories">
+<div class="nav-links">
+<a href="#categories">Categories</a>
+<a href="#products">Shop</a>
+<a href="#about">About</a>
+<a href="#contact">Contact</a>
+</div>
 
-    <a href="#" class="category-card">
-        <img src="{% static 'images/about1.jpg' %}">
-        <div class="category-overlay">
-            <h2>MEN</h2>
-        </div>
-    </a>
+<div class="nav-right">
 
-    <a href="#" class="category-card">
-        <img src="{% static 'images/about2.jpg' %}">
-        <div class="category-overlay">
-            <h2>WOMEN</h2>
-        </div>
-    </a>
+<a href="{% url 'cart' %}" class="cart-btn">
+<i class="fa-solid fa-bag-shopping"></i>
 
-    <a href="#" class="category-card">
-        <img src="{% static 'images/about3.jpg' %}">
-        <div class="category-overlay">
-            <h2>CLASSIC</h2>
-        </div>
-    </a>
+<span class="cart-count">
+{{ request.session.cart|length }}
+</span>
+
+</a>
+
+</div>
+
+</nav>
+
+<section class="hero">
+
+<div class="hero-content">
+
+<div class="hero-tag">
+NEW DROP 2026
+</div>
+
+<h1>
+FOR THE STREETS
+<br>
+FOR THE CULTURE
+</h1>
+
+<p>
+Luxury Egyptian Streetwear Built For Everyday Wear.
+Premium Fabrics. Timeless Designs.
+</p>
+
+<a href="#products" class="hero-btn">
+SHOP NOW
+</a>
+
+</div>
 
 </section>
 
-<section class="products" id="offers">
+<section class="section" id="categories">
 
-    <div class="section-title">
-        <h2>SPECIAL OFFERS</h2>
-        <p>LIMITED TIME DEALS</p>
-    </div>
+<div class="section-title">
+<h2>SHOP BY CATEGORY</h2>
+<p>Choose Your Style</p>
+</div>
 
-    <div class="offer-banner">
-        <img src="{% static 'images/about1.jpg' %}" id="offerImage">
-    </div>
+<div class="categories-grid">
+
+<div class="category-card">
+<img src="{% static 'images/about1.jpg' %}">
+<div class="category-overlay">
+<h2>MEN</h2>
+</div>
+</div>
+
+<div class="category-card">
+<img src="{% static 'images/about2.jpg' %}">
+<div class="category-overlay">
+<h2>WOMEN</h2>
+</div>
+</div>
+
+<div class="category-card">
+<img src="{% static 'images/about3.jpg' %}">
+<div class="category-overlay">
+<h2>CLASSIC</h2>
+</div>
+</div>
+
+</div>
 
 </section>
 
-    <!-- PRODUCTS (SWIPER ENABLED) -->
-    <section class="products" id="products">
-        <div class="section-title"><h2>OUR COLLECTION</h2><p>Premium Streetwear Pieces</p></div>
-        <div class="swiper productSwiper">
-            <div class="swiper-wrapper">
-                {% for product in products %}
-                <div class="swiper-slide product-card">
-                    <div class="product-image"><img src="{{ product.image.url }}"></div>
-                    <div class="product-info">
-                        <span class="badge">NEW</span>
-                        <h3>{{ product.name }}</h3>
-                        <p class="price">{{ product.price }} EGP</p>
-                        <div class="buttons">
-                            <a href="{% url 'product_detail' product.id %}" class="view-btn">View</a>
-                            <a href="{% url 'add_to_cart' product.id %}" class="add-btn">Add To Cart</a>
-                        </div>
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-        </div>
-    </section>
+<section class="section why">
 
-    <footer id="contact"><h1>LUSSO</h1><p>Luxury Streetwear Brand</p></footer>
-    <a href="https://wa.me/201556594553" class="whatsapp"><i class="fa-brands fa-whatsapp"></i></a>
+<div class="section-title">
+<h2>WHY LUSSO</h2>
+<p>Premium Quality You Can Feel</p>
+</div>
 
-    <!-- SCRIPTS -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script>
-        function openMenu(){ document.getElementById("sideMenu").classList.add("active"); }
-        function closeMenu(){ document.getElementById("sideMenu").classList.remove("active"); }
-        
-        // Swiper Initialization
-        var swiper = new Swiper(".productSwiper", {
-            slidesPerView: 3,
-            spaceBetween: 20,
-            grabCursor: true,
-            loop: true,
-            breakpoints: { 0: { slidesPerView: 1 }, 768: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } }
-        });
+<div class="why-grid">
 
-        const offers = [
-            "{% static 'images/about1.jpg' %}",
-            "{% static 'images/about2.jpg' %}",
-            "{% static 'images/about3.jpg' %}"
-        ];
+<div class="why-card">
+<i class="fa-solid fa-shirt"></i>
+<h3>Premium Fabric</h3>
+<p>Heavyweight cotton built to last.</p>
+</div>
 
-        let offerIndex = 0;
+<div class="why-card">
+<i class="fa-solid fa-truck-fast"></i>
+<h3>Fast Shipping</h3>
+<p>Fast delivery all over Egypt.</p>
+</div>
 
-        setInterval(() => {
-            offerIndex = (offerIndex + 1) % offers.length;
-            document.getElementById("offerImage").src = offers[offerIndex];
-        }, 3000);
+<div class="why-card">
+<i class="fa-solid fa-crown"></i>
+<h3>Luxury Design</h3>
+<p>Streetwear inspired by modern culture.</p>
+</div>
 
-    </script>
+</div>
+
+</section>
+
+<section class="section products-section" id="products">
+
+<div class="section-title">
+<h2>BEST SELLERS</h2>
+<p>Most Wanted Pieces Right Now</p>
+</div>
+
+<div class="swiper productSwiper">
+
+<div class="swiper-wrapper">
+
+{% for product in products %}
+
+<div class="swiper-slide">
+
+<div class="product-card">
+
+<div class="product-image">
+<img src="{{ product.image.url }}" alt="{{ product.name }}">
+</div>
+
+<div class="product-info">
+
+<span class="product-badge">
+BEST SELLER
+</span>
+
+<h3>
+{{ product.name }}
+</h3>
+
+<div class="product-price">
+{{ product.price }} EGP
+</div>
+
+<div class="product-buttons">
+
+<a href="{% url 'product_detail' product.id %}" class="view-btn">
+VIEW
+</a>
+
+<a href="{% url 'add_to_cart' product.id %}" class="add-btn">
+ADD TO CART
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</div>
+
+</section>
+
+<section class="section about-section" id="about">
+
+<div class="section-title">
+<h2>ABOUT LUSSO</h2>
+<p>Born In Egypt. Built For The Streets.</p>
+</div>
+
+<div class="about-content">
+
+<p>
+
+LUSSO is a premium Egyptian streetwear brand inspired by
+modern culture, luxury fashion and everyday confidence.
+
+Our mission is simple:
+
+Create timeless pieces with premium quality that feel as
+good as they look.
+
+</p>
+
+</div>
+
+</section>
+
+<section class="section reviews-section">
+
+<div class="section-title">
+<h2>WHAT PEOPLE SAY</h2>
+<p>Customer Reviews</p>
+</div>
+
+<div class="reviews-grid">
+
+<div class="review-card">
+★★★★★
+<p>
+أفضل خامة تيشيرت اشتريتها بصراحة.
+</p>
+</div>
+
+<div class="review-card">
+★★★★★
+<p>
+المقاس مظبوط والتوصيل سريع جداً.
+</p>
+</div>
+
+<div class="review-card">
+★★★★★
+<p>
+خامة ممتازة وشكل فخم.
+</p>
+</div>
+
+</div>
+
+</section>
+
+<footer id="contact">
+
+<h2>
+LUSSO
+</h2>
+
+<p>
+Luxury Streetwear For The New Generation
+</p>
+
+<div class="footer-links">
+
+<a href="#">
+Instagram
+</a>
+
+<a href="#">
+TikTok
+</a>
+
+<a href="https://wa.me/201556594553">
+WhatsApp
+</a>
+
+</div>
+
+<p class="copyright">
+© 2026 LUSSO. All Rights Reserved.
+</p>
+
+</footer>
+
+<a href="https://wa.me/201556594553" class="whatsapp">
+
+<i class="fa-brands fa-whatsapp"></i>
+
+</a>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<script>
+
+new Swiper(".productSwiper", {
+
+slidesPerView:3,
+spaceBetween:25,
+loop:true,
+
+breakpoints:{
+
+0:{
+slidesPerView:1
+},
+
+768:{
+slidesPerView:2
+},
+
+1024:{
+slidesPerView:3
+}
+
+}
+
+});
+
+</script>
+
+<style>
+
+.products-section{
+background:#f5f5f5;
+}
+
+.products-section .section-title h2{
+color:black;
+}
+
+.products-section .section-title p{
+color:#666;
+}
+
+.product-card{
+background:white;
+border-radius:25px;
+overflow:hidden;
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+
+.product-image{
+height:320px;
+overflow:hidden;
+}
+
+.product-image img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+.product-info{
+padding:25px;
+}
+
+.product-badge{
+background:black;
+color:white;
+padding:6px 12px;
+border-radius:30px;
+font-size:11px;
+font-weight:700;
+}
+
+.product-info h3{
+margin:18px 0;
+font-size:24px;
+}
+
+.product-price{
+font-size:24px;
+font-weight:800;
+margin-bottom:20px;
+}
+
+.product-buttons{
+display:flex;
+gap:10px;
+}
+
+.view-btn,
+.add-btn{
+flex:1;
+text-align:center;
+padding:14px;
+border-radius:12px;
+text-decoration:none;
+font-weight:700;
+}
+
+.view-btn{
+background:#f0f0f0;
+color:black;
+}
+
+.add-btn{
+background:black;
+color:white;
+}
+
+.about-section{
+background:#111;
+}
+
+.about-content{
+max-width:800px;
+margin:auto;
+text-align:center;
+}
+
+.about-content p{
+color:#bbb;
+font-size:18px;
+line-height:1.9;
+}
+
+.reviews-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:20px;
+}
+
+.review-card{
+background:#181818;
+padding:35px;
+border-radius:20px;
+color:var(--gold);
+font-size:24px;
+}
+
+.review-card p{
+margin-top:15px;
+color:white;
+font-size:15px;
+line-height:1.8;
+}
+
+footer{
+background:black;
+padding:80px 20px;
+text-align:center;
+}
+
+footer h2{
+color:var(--gold);
+font-size:40px;
+letter-spacing:5px;
+margin-bottom:15px;
+}
+
+footer p{
+color:#999;
+}
+
+.footer-links{
+display:flex;
+justify-content:center;
+gap:25px;
+margin:30px 0;
+flex-wrap:wrap;
+}
+
+.footer-links a{
+color:white;
+text-decoration:none;
+}
+
+.whatsapp{
+position:fixed;
+right:25px;
+bottom:25px;
+width:65px;
+height:65px;
+border-radius:50%;
+background:#25d366;
+display:flex;
+align-items:center;
+justify-content:center;
+color:white;
+font-size:32px;
+text-decoration:none;
+z-index:9999;
+}
+
+@media(max-width:900px){
+
+.reviews-grid{
+grid-template-columns:1fr;
+}
+
+.product-image{
+height:260px;
+}
+
+}
+
+</style>
+
 </body>
 </html>
