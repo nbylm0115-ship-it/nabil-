@@ -317,17 +317,26 @@ font-size:32px;
 font-size:14px;
 }
 
-.categories-grid{
-grid-template-columns:1fr;
-gap:15px;
-}
+.categories{
+        grid-template-columns:repeat(3,1fr);
+        gap:6px;
+        padding:40px 3%;
+    }
 
-.category-card{
-height:220px;
-}
+    .category-card{
+        height:100px;
+        border-radius:16px;
+    }
 
-.category-overlay h2{
-font-size:24px;
+    .category-overlay{
+        padding:8px;
+    }
+
+    .category-overlay h2{
+        font-size:12px;
+        font-weight:700;
+    }
+
 }
 
 .product-image{
