@@ -275,27 +275,108 @@ margin-bottom:10px;
 color:#aaa;
 }
 
-@media(max-width:900px){
+@media(max-width:768px){
 
-.nav-links{
-display:none;
+.navbar{
+padding:0 20px;
+height:75px;
+}
+
+.logo{
+font-size:24px;
+letter-spacing:3px;
+}
+
+.hero{
+padding:140px 20px 60px;
 }
 
 .hero h1{
-font-size:52px;
+font-size:clamp(42px,8vw,90px);
 }
 
-.categories-grid,
+.hero p{
+font-size:15px;
+line-height:1.7;
+}
+
+.hero-btn{
+padding:14px 28px;
+font-size:14px;
+}
+
+.section{
+padding:70px 20px;
+}
+
+.section-title h2{
+font-size:32px;
+}
+
+.section-title p{
+font-size:14px;
+}
+
+.categories-grid{
+grid-template-columns:1fr;
+gap:15px;
+}
+
+.category-card{
+height:220px;
+}
+
+.category-overlay h2{
+font-size:24px;
+}
+
+.product-image{
+height:250px;
+}
+
+.product-info h3{
+font-size:18px;
+}
+
+.product-price{
+font-size:20px;
+}
+
+.product-buttons{
+flex-direction:column;
+}
+
+.view-btn,
+.add-btn{
+width:100%;
+}
+
 .why-grid{
 grid-template-columns:1fr;
 }
 
-.section-title h2{
-font-size:36px;
+.reviews-grid{
+grid-template-columns:1fr;
+}
+
+.about-content p{
+font-size:15px;
+}
+
+.footer-links{
+flex-direction:column;
+gap:12px;
+}
+
+.whatsapp{
+width:55px;
+height:55px;
+font-size:28px;
+right:15px;
+bottom:15px;
 }
 
 }
-
 </style>
 </head>
 
