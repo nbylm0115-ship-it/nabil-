@@ -69,6 +69,20 @@
         .view-btn { background:#f1f1f1; color:black; }
         .add-btn { background:black; color:white; }
 
+        .offer-banner{
+            max-width:1200px;
+            height:450px;
+            margin:auto;
+            border-radius:30px;
+            overflow:hidden;
+        }
+
+        .offer-banner img{
+            width:100%;
+            height:100%;
+            object-fit:cover;
+        }
+
         /* FOOTER & WHATSAPP */
         footer { background:black; padding:80px 5%; text-align:center; }
         footer h1 { color:#d4af37; font-size:42px; margin-bottom:15px; letter-spacing:5px; }
@@ -80,13 +94,12 @@
     <div class="top-bar"><span>FREE SHIPPING ON ORDERS OVER 2000LE 🔥 NEW COLLECTION OUT NOW 🔥</span></div>
     
     <!-- NAVBAR -->
-    <nav class="navbar">
-        <a href="{% url 'home' %}" class="logo">LUSSO</a>
-        <div class="nav-links"><a href="#products">Shop</a><a href="#about">About</a><a href="#contact">Contact</a></div>
-        <div class="nav-right">
-            <a href="{% url 'cart' %}" class="cart-btn"><i class="fa-solid fa-bag-shopping"></i><span class="cart-count">{{ request.session.cart|length }}</span></a>
-            <button class="menu-btn" onclick="openMenu()">☰</button>
-        </div>
+    <div class="nav-links">
+        <a href="#categories">Categories</a>
+        <a href="#offers">Offers</a>
+        <a href="#products">Shop</a>
+        <a href="#contact">Contact</a>
+    </div>
     </nav>
 
     <!-- SIDE MENU -->
@@ -100,7 +113,7 @@
 
     <!-- CATEGORIES -->
 
-<section class="categories">
+<section class="categories" id="categories">
 
     <a href="#" class="category-card">
         <img src="{% static 'images/about1.jpg' %}">
@@ -122,6 +135,19 @@
             <h2>CLASSIC</h2>
         </div>
     </a>
+
+</section>
+
+<section class="products" id="offers">
+
+    <div class="section-title">
+        <h2>SPECIAL OFFERS</h2>
+        <p>LIMITED TIME DEALS</p>
+    </div>
+
+    <div class="offer-banner">
+        <img src="{% static 'images/about1.jpg' %}" id="offerImage">
+    </div>
 
 </section>
 
@@ -165,6 +191,19 @@
             loop: true,
             breakpoints: { 0: { slidesPerView: 1 }, 768: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } }
         });
+
+        const offers = [
+            "{% static 'images/about1.jpg' %}",
+            "{% static 'images/about2.jpg' %}",
+            "{% static 'images/about3.jpg' %}"
+        ];
+
+        let offerIndex = 0;
+
+        setInterval(() => {
+            offerIndex = (offerIndex + 1) % offers.length;
+            document.getElementById("offerImage").src = offers[offerIndex];
+        }, 3000);
 
     </script>
 </body>
