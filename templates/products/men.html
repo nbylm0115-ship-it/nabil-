@@ -90,14 +90,19 @@ color:#ccc;
 }
 
 .hero-banner{
-    height:220
-    background:url("{% static 'images/men-banner.jpeg' %}");
-    background-size:cover;
-    background-position:center;
+    height: 350px;
+    background-image: url("{% static 'images/about1.jpeg' %}");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
     display:flex;
     align-items:center;
     justify-content:center;
-    text-align:center;
+
+    border-radius:20px;
+    margin:20px;
+    position:relative;
 }
 
 /* PRODUCTS */
@@ -168,13 +173,6 @@ color:#888;
 </style>
 </head>
 
-<div class="hero-banner">
-    <div class="hero-content">
-        <h1>MEN</h1>
-        <p>Men's Collection</p>
-    </div>
-</div>
-
 <body>
 
 <!-- NAVBAR -->
@@ -198,6 +196,13 @@ LUSSO
 </nav>
 
 <!-- HERO -->
+
+<div class="hero-banner">
+    <div class="hero-content">
+        <h1>MEN</h1>
+        <p>Men's Collection</p>
+    </div>
+</div>
 
 <section class="hero">
 
