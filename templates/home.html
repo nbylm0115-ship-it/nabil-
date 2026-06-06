@@ -72,6 +72,26 @@ padding:0 6%;
 z-index:9999;
 }
 
+.menu-btn{
+    width:50px;
+    height:50px;
+    border-radius:50%;
+    border:none;
+    background:#111;
+    color:white;
+    font-size:22px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    cursor:pointer;
+}
+
+.nav-right{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
 .logo{
 text-decoration:none;
 color:white;
@@ -337,7 +357,30 @@ font-size:14px;
         font-weight:700;
     }
 
+ .features{
+        grid-template-columns:repeat(3,1fr);
+        gap:10px;
+    }
+
+    .feature-card{
+        padding:20px 10px;
+    }
+
+    .feature-card h3{
+        font-size:14px;
+    }
+
+    .feature-card p{
+        font-size:11px;
+    }
+
+    .feature-card i{
+        font-size:24px;
+    }
+
 }
+
+
 
 .product-image{
 height:250px;
@@ -385,9 +428,102 @@ right:15px;
 bottom:15px;
 }
 
+.side-menu{
+    position:fixed;
+    top:0;
+    right:-100%;
+    width:280px;
+    height:100vh;
+    background:#111;
+    padding:30px;
+    transition:.4s;
+    z-index:99999;
 }
+
+.side-menu.active{
+    right:0;
+}
+
+.menu-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:30px;
+}
+
+.menu-top button{
+    background:none;
+    border:none;
+    color:white;
+    font-size:24px;
+    cursor:pointer;
+}
+
+.side-menu a{
+    display:block;
+    color:white;
+    text-decoration:none;
+    margin:18px 0;
+    font-size:18px;
+}
+
+.features{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+    padding:60px 5%;
+}
+
+.feature-card{
+    background:#111;
+    border-radius:25px;
+    padding:35px 20px;
+    text-align:center;
+}
+
+.feature-card i{
+    font-size:38px;
+    color:#d4af37;
+    margin-bottom:15px;
+}
+
+@media(max-width:768px){
+
+    .why-grid{
+        grid-template-columns:repeat(3,1fr);
+        gap:10px;
+    }
+
+    .why-card{
+        padding:15px 8px;
+    }
+
+    .why-card h3{
+        font-size:13px;
+    }
+
+    .why-card p{
+        font-size:10px;
+    }
+
+    .why-card i{
+        font-size:22px;
+    }
+
+}
+
 </style>
 </head>
+
+<script>
+function openMenu(){
+    document.getElementById("sideMenu").classList.add("active");
+}
+
+function closeMenu(){
+    document.getElementById("sideMenu").classList.remove("active");
+}
+</script>
 
 <body>
 
@@ -404,8 +540,16 @@ LUSSO
 </a>
 
 <div class="side-menu" id="sideMenu">
+
     <div class="menu-top">
         <h2>LUSSO</h2>
+        <button onclick="closeMenu()">✕</button>
+    </div>
+
+    <a href="#categories">Categories</a>
+    <a href="#products">Shop</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
 
 </div>
 
@@ -464,57 +608,26 @@ SHOP NOW
 
 <div class="categories-grid">
 
-<div class="category-card">
-<img src="{% static 'images/about1.jpg' %}">
-<div class="category-overlay">
-<h2>MEN</h2>
-</div>
-</div>
+<a href="{% url 'men' %}" class="category-card">
+    <img src="{% static 'images/about1.jpg' %}">
+    <div class="category-overlay">
+        <h2>MEN</h2>
+    </div>
+</a>
 
-<div class="category-card">
+<a href="{% url 'women' %}" class="category-card">
 <img src="{% static 'images/about2.jpg' %}">
 <div class="category-overlay">
 <h2>WOMEN</h2>
 </div>
-</div>
+</a>
 
-<div class="category-card">
+<a href="{% url 'classic' %}" class="category-card">
 <img src="{% static 'images/about3.jpg' %}">
 <div class="category-overlay">
 <h2>CLASSIC</h2>
 </div>
-</div>
-
-</div>
-
-</section>
-
-<section class="section why">
-
-<div class="section-title">
-<h2>WHY LUSSO</h2>
-<p>Premium Quality You Can Feel</p>
-</div>
-
-<div class="why-grid">
-
-<div class="why-card">
-<i class="fa-solid fa-shirt"></i>
-<h3>Premium Fabric</h3>
-<p>Heavyweight cotton built to last.</p>
-</div>
-
-<div class="why-card">
-<i class="fa-solid fa-truck-fast"></i>
-<h3>Fast Shipping</h3>
-<p>Fast delivery all over Egypt.</p>
-</div>
-
-<div class="why-card">
-<i class="fa-solid fa-crown"></i>
-<h3>Luxury Design</h3>
-<p>Streetwear inspired by modern culture.</p>
-</div>
+</a>
 
 </div>
 
@@ -604,10 +717,6 @@ good as they look.
 
 </div>
 
-</section>
-
-<section class="section reviews-section">
-
 <div class="section-title">
 <h2>WHAT PEOPLE SAY</h2>
 <p>Customer Reviews</p>
@@ -634,6 +743,37 @@ good as they look.
 <p>
 خامة ممتازة وشكل فخم.
 </p>
+</div>
+
+</div>
+
+</section>
+
+<section class="section why">
+
+<div class="section-title">
+<h2>WHY LUSSO</h2>
+<p>Premium Quality You Can Feel</p>
+</div>
+
+<div class="why-grid">
+
+<div class="why-card">
+<i class="fa-solid fa-shirt"></i>
+<h3>Premium Fabric</h3>
+<p>Heavyweight cotton built to last.</p>
+</div>
+
+<div class="why-card">
+<i class="fa-solid fa-truck-fast"></i>
+<h3>Fast Shipping</h3>
+<p>Fast delivery all over Egypt.</p>
+</div>
+
+<div class="why-card">
+<i class="fa-solid fa-crown"></i>
+<h3>Luxury Design</h3>
+<p>Streetwear inspired by modern culture.</p>
 </div>
 
 </div>

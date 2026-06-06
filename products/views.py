@@ -216,3 +216,14 @@ def checkout(request):
 def success(request):
 
     return render(request, 'success.html')
+
+from django.shortcuts import render
+
+def men(request):
+    return render(request, 'products/men.html')
+
+def women(request):
+    return render(request, 'products/women.html')
+
+def classic(request):
+    return render(request, 'products/classic.html')

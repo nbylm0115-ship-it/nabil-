@@ -21,6 +21,10 @@ urlpatterns = [
 
     path('success/', views.success, name='success'),
 
+    path('men/', views.men, name='men'),
+    path('women/', views.women, name='women'),
+    path('classic/', views.classic, name='classic'),
+
 ]
 
 path('increase/<int:id>/', views.increase_quantity, name='increase'),

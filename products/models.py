@@ -40,6 +40,18 @@ class Product(models.Model):
         null=True
     )
 
+    CATEGORY_CHOICES = [
+        ('men', 'Men'),
+        ('women', 'Women'),
+        ('classic', 'Classic'),
+    ]
+
+    category = models.CharField(
+        max_length=20,
+        choices=CATEGORY_CHOICES,
+        default='men'
+    )
+
     stock = models.IntegerField(
         default=1
     )
