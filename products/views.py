@@ -220,10 +220,36 @@ def success(request):
 from django.shortcuts import render
 
 def men(request):
-    return render(request, 'products/men.html')
+    products = Product.objects.filter(category='men')
+
+    return render(
+        request,
+        'products/men.html',
+        {
+            'products': products
+        }
+    )
+
 
 def women(request):
-    return render(request, 'products/women.html')
+    products = Product.objects.filter(category='women')
+
+    return render(
+        request,
+        'products/women.html',
+        {
+            'products': products
+        }
+    )
+
 
 def classic(request):
-    return render(request, 'products/classic.html')
+    products = Product.objects.filter(category='classic')
+
+    return render(
+        request,
+        'products/classic.html',
+        {
+            'products': products
+        }
+    )
