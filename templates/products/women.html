@@ -89,6 +89,34 @@ margin-top:10px;
 color:#ccc;
 }
 
+.hero-banner{
+    height:350px;
+    background:url("{% static 'images/women-banner.jpeg' %}");
+    background-size:cover;
+    background-position:center;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+}
+
+.hero-content{
+    background:rgba(0,0,0,.4);
+    padding:20px 30px;
+    border-radius:12px;
+}
+
+.hero-content h1{
+    color:white;
+    font-size:70px;
+    margin:0;
+}
+
+.hero-content p{
+    color:white;
+    margin-top:10px;
+}
+
 /* PRODUCTS */
 
 .products{
@@ -157,6 +185,15 @@ color:#888;
 </style>
 </head>
 <body>
+
+    {% load static %}
+
+<div class="hero-banner">
+    <div class="hero-content">
+        <h1>WOMEN</h1>
+        <p>Women's Collection</p>
+    </div>
+</div>
 
 <!-- NAVBAR -->
 
