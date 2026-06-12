@@ -1,1033 +1,1036 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>LUSSO</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-<style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
-scroll-behavior:smooth;
-}
-
-body{
-background:#0b0b0b;
-overflow-x:hidden;
-}
-
-:root{
---gold:#d4af37;
---black:#0b0b0b;
---white:#ffffff;
---gray:#888;
-}
-
-.top-bar{
-height:40px;
-background:var(--gold);
-display:flex;
-align-items:center;
-overflow:hidden;
-position:fixed;
-top:0;
-left:0;
-width:100%;
-z-index:99999;
-}
-
-.top-bar span{
-white-space:nowrap;
-padding-left:100%;
-font-weight:700;
-animation:move 15s linear infinite;
-}
-
-@keyframes move{
-0%{transform:translateX(0);}
-100%{transform:translateX(-100%);}
-}
-
-.navbar{
-position:fixed;
-top:40px;
-left:0;
-width:100%;
-height:85px;
-background:rgba(0,0,0,.75);
-backdrop-filter:blur(15px);
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:0 6%;
-z-index:9999;
-}
-
-.menu-btn{
-    width:50px;
-    height:50px;
-    border-radius:50%;
-    border:none;
-    background:#111;
-    color:white;
-    font-size:22px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    cursor:pointer;
-}
-
-.nav-right{
-    display:flex;
-    align-items:center;
-    gap:12px;
-}
-
-.logo{
-text-decoration:none;
-color:white;
-font-size:34px;
-font-weight:900;
-letter-spacing:6px;
-}
-
-.nav-links{
-display:flex;
-gap:35px;
-}
-
-.nav-links a{
-color:white;
-text-decoration:none;
-font-weight:500;
-transition:.3s;
-}
-
-.nav-links a:hover{
-color:var(--gold);
-}
-
-.nav-right{
-display:flex;
-align-items:center;
-gap:12px;
-}
-
-.cart-btn{
-width:50px;
-height:50px;
-border-radius:50%;
-background:#111;
-display:flex;
-justify-content:center;
-align-items:center;
-color:white;
-text-decoration:none;
-position:relative;
-}
-
-.cart-count{
-position:absolute;
-top:-5px;
-right:-5px;
-width:20px;
-height:20px;
-border-radius:50%;
-background:var(--gold);
-color:black;
-font-size:11px;
-font-weight:700;
-display:flex;
-justify-content:center;
-align-items:center;
-}
-
-.hero{
-height:100vh;
-background:
-linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.65)),
-url("{% static 'images/bg.jpg' %}");
-background-size:cover;
-background-position:center;
-display:flex;
-justify-content:center;
-align-items:center;
-text-align:center;
-padding:0 20px;
-}
-
-.hero-content{
-max-width:900px;
-}
-
-.hero-tag{
-display:inline-block;
-background:var(--gold);
-padding:10px 20px;
-border-radius:50px;
-font-size:13px;
-font-weight:700;
-margin-bottom:25px;
-}
-
-.hero h1{
-font-size:90px;
-font-weight:900;
-color:white;
-line-height:1;
-margin-bottom:25px;
-}
-
-.hero p{
-color:#ddd;
-font-size:20px;
-max-width:700px;
-margin:auto;
-margin-bottom:35px;
-}
-
-.hero-btn{
-background:var(--gold);
-color:black;
-padding:16px 45px;
-border-radius:50px;
-text-decoration:none;
-font-weight:700;
-}
-
-.section{
-padding:100px 6%;
-}
-
-.section-title{
-text-align:center;
-margin-bottom:60px;
-}
-
-.section-title h2{
-font-size:55px;
-color:white;
-font-weight:900;
-}
-
-.section-title p{
-color:#aaa;
-margin-top:10px;
-}
-
-.categories-grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:20px;
-}
-
-.category-card{
-height:350px;
-border-radius:25px;
-overflow:hidden;
-position:relative;
-}
-
-.category-card img{
-width:100%;
-height:100%;
-object-fit:cover;
-transition:.5s;
-}
-
-.category-card:hover img{
-transform:scale(1.08);
-}
-
-.category-overlay{
-position:absolute;
-inset:0;
-background:linear-gradient(to top,rgba(0,0,0,.8),transparent);
-display:flex;
-align-items:flex-end;
-padding:30px;
-}
-
-.category-overlay h2{
-color:white;
-font-size:36px;
-font-weight:800;
-}
-
-.why{
-background:#111;
-}
-
-.why-grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:25px;
-}
-
-.why-card{
-background:#181818;
-padding:40px;
-border-radius:25px;
-text-align:center;
-}
-
-.why-card i{
-font-size:40px;
-color:var(--gold);
-margin-bottom:20px;
-}
-
-.why-card h3{
-color:white;
-margin-bottom:10px;
-}
-
-.why-card p{
-color:#aaa;
-}
-
-@media(max-width:768px){
-
-.navbar{
-padding:0 20px;
-height:75px;
-}
-
-.logo{
-font-size:24px;
-letter-spacing:3px;
-}
-
-.hero{
-padding:140px 20px 60px;
-}
-
-.hero h1{
-font-size:clamp(42px,8vw,90px);
-}
-
-.hero p{
-font-size:15px;
-line-height:1.7;
-}
-
-.hero-btn{
-padding:14px 28px;
-font-size:14px;
-}
-
-.section{
-padding:70px 20px;
-}
-
-.section-title h2{
-font-size:32px;
-}
-
-.section-title p{
-font-size:14px;
-}
-
-.categories{
-        grid-template-columns:repeat(3,1fr);
-        gap:6px;
-        padding:40px 3%;
-    }
-
-    .category-card{
-        height:100px;
-        border-radius:16px;
-    }
-
-    .category-overlay{
-        padding:8px;
-    }
-
-    .category-overlay h2{
-        font-size:12px;
-        font-weight:700;
-    }
-
- .features{
-        grid-template-columns:repeat(3,1fr);
-        gap:10px;
-    }
-
-    .feature-card{
-        padding:20px 10px;
-    }
-
-    .feature-card h3{
-        font-size:14px;
-    }
-
-    .feature-card p{
-        font-size:11px;
-    }
-
-    .feature-card i{
-        font-size:24px;
-    }
-
-}
-
-
-
-.product-image{
-height:250px;
-}
-
-.product-info h3{
-font-size:18px;
-}
-
-.product-price{
-font-size:20px;
-}
-
-.product-buttons{
-flex-direction:column;
-}
-
-.view-btn,
-.add-btn{
-width:100%;
-}
-
-.why-grid{
-grid-template-columns:1fr;
-}
-
-.reviews-grid{
-grid-template-columns:1fr;
-}
-
-.about-content p{
-font-size:15px;
-}
-
-.footer-links{
-flex-direction:column;
-gap:12px;
-}
-
-.whatsapp{
-width:55px;
-height:55px;
-font-size:28px;
-right:15px;
-bottom:15px;
-}
-
-.side-menu{
-    position:fixed;
-    top:0;
-    right:-100%;
-    width:280px;
-    height:100vh;
-    background:#111;
-    padding:30px;
-    transition:.4s;
-    z-index:99999;
-}
-
-.side-menu.active{
-    right:0;
-}
-
-.menu-top{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:30px;
-}
-
-.menu-top button{
-    background:none;
-    border:none;
-    color:white;
-    font-size:24px;
-    cursor:pointer;
-}
-
-.side-menu a{
-    display:block;
-    color:white;
-    text-decoration:none;
-    margin:18px 0;
-    font-size:18px;
-}
-
-.features{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:20px;
-    padding:60px 5%;
-}
-
-.feature-card{
-    background:#111;
-    border-radius:25px;
-    padding:35px 20px;
-    text-align:center;
-}
-
-.feature-card i{
-    font-size:38px;
-    color:#d4af37;
-    margin-bottom:15px;
-}
-
-@media(max-width:768px){
-
-    .why-grid{
-        grid-template-columns:repeat(3,1fr);
-        gap:10px;
-    }
-
-    .why-card{
-        padding:15px 8px;
-    }
-
-    .why-card h3{
-        font-size:13px;
-    }
-
-    .why-card p{
-        font-size:10px;
-    }
-
-    .why-card i{
-        font-size:22px;
-    }
-
-}
-
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>LUSSO</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #0b0b0b;
+            overflow-x: hidden;
+        }
+
+        :root {
+            --gold: #d4af37;
+            --black: #0b0b0b;
+            --white: #ffffff;
+            --gray: #888;
+        }
+
+        .top-bar {
+            height: 40px;
+            background: var(--gold);
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 99999;
+        }
+
+        .top-bar span {
+            white-space: nowrap;
+            padding-left: 100%;
+            font-weight: 700;
+            animation: move 15s linear infinite;
+        }
+
+        @keyframes move {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        .navbar {
+            position: fixed;
+            top: 40px;
+            left: 0;
+            width: 100%;
+            height: 85px;
+            background: rgba(0, 0, 0, .75);
+            backdrop-filter: blur(15px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 6%;
+            z-index: 9999;
+        }
+
+        .menu-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            background: #111;
+            color: white;
+            font-size: 22px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo {
+            text-decoration: none;
+            color: white;
+            font-size: 34px;
+            font-weight: 900;
+            letter-spacing: 6px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 35px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: .3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .cart-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #111;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-decoration: none;
+            position: relative;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--gold);
+            color: black;
+            font-size: 11px;
+            font-weight: 700;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, .55), rgba(0, 0, 0, .65)),
+            url("{% static 'images/bg.jpg' %}");
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .hero-content {
+            max-width: 900px;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            background: var(--gold);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 25px;
+        }
+
+        .hero h1 {
+            font-size: 90px;
+            font-weight: 900;
+            color: white;
+            line-height: 1;
+            margin-bottom: 25px;
+        }
+
+        .hero p {
+            color: #ddd;
+            font-size: 20px;
+            max-width: 700px;
+            margin: auto;
+            margin-bottom: 35px;
+        }
+
+        .hero-btn {
+            background: var(--gold);
+            color: black;
+            padding: 16px 45px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .section {
+            padding: 100px 6%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 55px;
+            color: white;
+            font-weight: 900;
+        }
+
+        .section-title p {
+            color: #aaa;
+            margin-top: 10px;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .category-card {
+            height: 350px;
+            border-radius: 25px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .category-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: .5s;
+        }
+
+        .category-card:hover img {
+            transform: scale(1.08);
+        }
+
+        .category-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, .8), transparent);
+            display: flex;
+            align-items: flex-end;
+            padding: 30px;
+        }
+
+        .category-overlay h2 {
+            color: white;
+            font-size: 36px;
+            font-weight: 800;
+        }
+
+        .why {
+            background: #111;
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .why-card {
+            background: #181818;
+            padding: 40px;
+            border-radius: 25px;
+            text-align: center;
+        }
+
+        .why-card i {
+            font-size: 40px;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        .why-card h3 {
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .why-card p {
+            color: #aaa;
+        }
+
+        @media(max-width:768px) {
+
+            .navbar {
+                padding: 0 20px;
+                height: 75px;
+            }
+
+            .logo {
+                font-size: 24px;
+                letter-spacing: 3px;
+            }
+
+            .hero {
+                padding: 140px 20px 60px;
+            }
+
+            .hero h1 {
+                font-size: clamp(42px, 8vw, 90px);
+            }
+
+            .hero p {
+                font-size: 15px;
+                line-height: 1.7;
+            }
+
+            .hero-btn {
+                padding: 14px 28px;
+                font-size: 14px;
+            }
+
+            .section {
+                padding: 70px 20px;
+            }
+
+            .section-title h2 {
+                font-size: 32px;
+            }
+
+            .section-title p {
+                font-size: 14px;
+            }
+
+            .categories {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 6px;
+                padding: 40px 3%;
+            }
+
+            .category-card {
+                height: 100px;
+                border-radius: 16px;
+            }
+
+            .category-overlay {
+                padding: 8px;
+            }
+
+            .category-overlay h2 {
+                font-size: 12px;
+                font-weight: 700;
+            }
+
+            .features {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 10px;
+            }
+
+            .feature-card {
+                padding: 20px 10px;
+            }
+
+            .feature-card h3 {
+                font-size: 14px;
+            }
+
+            .feature-card p {
+                font-size: 11px;
+            }
+
+            .feature-card i {
+                font-size: 24px;
+            }
+
+        }
+
+
+
+        .product-image {
+            height: 250px;
+        }
+
+        .product-info h3 {
+            font-size: 18px;
+        }
+
+        .product-price {
+            font-size: 20px;
+        }
+
+        .product-buttons {
+            flex-direction: column;
+        }
+
+        .view-btn,
+        .add-btn {
+            width: 100%;
+        }
+
+        .why-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .reviews-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .about-content p {
+            font-size: 15px;
+        }
+
+        .footer-links {
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .whatsapp {
+            width: 55px;
+            height: 55px;
+            font-size: 28px;
+            right: 15px;
+            bottom: 15px;
+        }
+
+        .side-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 280px;
+            height: 100vh;
+            background: #111;
+            padding: 30px;
+            transition: .4s;
+            z-index: 99999;
+        }
+
+        .side-menu.active {
+            right: 0;
+        }
+
+        .menu-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .menu-top button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .side-menu a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            margin: 18px 0;
+            font-size: 18px;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 60px 5%;
+        }
+
+        .feature-card {
+            background: #111;
+            border-radius: 25px;
+            padding: 35px 20px;
+            text-align: center;
+        }
+
+        .feature-card i {
+            font-size: 38px;
+            color: #d4af37;
+            margin-bottom: 15px;
+        }
+
+        @media(max-width:768px) {
+
+            .why-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 10px;
+            }
+
+            .why-card {
+                padding: 15px 8px;
+            }
+
+            .why-card h3 {
+                font-size: 13px;
+            }
+
+            .why-card p {
+                font-size: 10px;
+            }
+
+            .why-card i {
+                font-size: 22px;
+            }
+
+        }
+    </style>
 </head>
 
 <script>
-function openMenu(){
-    document.getElementById("sideMenu").classList.add("active");
-}
+    function openMenu() {
+        document.getElementById("sideMenu").classList.add("active");
+    }
 
-function closeMenu(){
-    document.getElementById("sideMenu").classList.remove("active");
-}
+    function closeMenu() {
+        document.getElementById("sideMenu").classList.remove("active");
+    }
 </script>
 
 <body>
 
-<div class="top-bar">
-<span>
-FREE SHIPPING OVER 2000 EGP • NEW DROP 2026 • LUSSO STREETWEAR
-</span>
-</div>
-
-<nav class="navbar">
-
-<a href="{% url 'home' %}" class="logo">
-LUSSO
-</a>
-
-<div class="side-menu" id="sideMenu">
-
-    <div class="menu-top">
-        <h2>LUSSO</h2>
-        <button onclick="closeMenu()">✕</button>
+    <div class="top-bar">
+        <span>
+            FREE SHIPPING OVER 2000 EGP • NEW DROP 2026 • LUSSO STREETWEAR
+        </span>
     </div>
 
-    <a href="#categories">Categories</a>
-    <a href="#products">Shop</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
+    <nav class="navbar">
 
-</div>
+        <a href="{% url 'home' %}" class="logo">
+            LUSSO
+        </a>
 
-<div class="nav-right">
+        <div class="side-menu" id="sideMenu">
 
-<button class="menu-btn" onclick="openMenu()">
-    <i class="fa-solid fa-bars"></i>
-</button>
+            <div class="menu-top">
+                <h2>LUSSO</h2>
+                <button onclick="closeMenu()">✕</button>
+            </div>
 
-<a href="{% url 'cart' %}" class="cart-btn">
-<i class="fa-solid fa-bag-shopping"></i>
+            <a href="#categories">Categories</a>
+            <a href="#products">Shop</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
 
-<span class="cart-count">
-{{ request.session.cart|length }}
-</span>
+        </div>
 
-</a>
+        <div class="nav-right">
 
-</div>
+            <button class="menu-btn" onclick="openMenu()">
+                <i class="fa-solid fa-bars"></i>
+            </button>
 
-</nav>
+            <a href="{% url 'cart' %}" class="cart-btn">
+                <i class="fa-solid fa-bag-shopping"></i>
 
-<section class="hero">
+                <span class="cart-count">
+                    {{ request.session.cart|length }}
+                </span>
 
-<div class="hero-content">
+            </a>
 
-<div class="hero-tag">
-NEW DROP 2026
-</div>
+        </div>
 
-<h1>
-FOR THE STREETS
-<br>
-FOR THE CULTURE
-</h1>
+    </nav>
 
-<p>
-Luxury Egyptian Streetwear Built For Everyday Wear.
-Premium Fabrics. Timeless Designs.
-</p>
+    <section class="hero">
 
-<a href="#products" class="hero-btn">
-SHOP NOW
-</a>
+        <div class="hero-content">
 
-</div>
+            <div class="hero-tag">
+                NEW DROP 2026
+            </div>
 
-</section>
+            <h1>
+                FOR THE STREETS
+                <br>
+                FOR THE CULTURE
+            </h1>
 
-<section class="section" id="categories">
+            <p>
+                Luxury Egyptian Streetwear Built For Everyday Wear.
+                Premium Fabrics. Timeless Designs.
+            </p>
 
-<div class="section-title">
-<h2>SHOP BY CATEGORY</h2>
-<p>Choose Your Style</p>
-</div>
+            <a href="#products" class="hero-btn">
+                SHOP NOW
+            </a>
 
-<div class="categories-grid">
+        </div>
 
-<a href="{% url 'men' %}" class="category-card">
-    <img src="{% static 'images/about1.jpeg' %}">
-    <div class="category-overlay">
-        <h2>MEN</h2>
-    </div>
-</a>
+    </section>
 
-<a href="{% url 'women' %}" class="category-card">
-<img src="{% static 'images/about2.jpeg' %}">
-<div class="category-overlay">
-<h2>WOMEN</h2>
-</div>
-</a>
+    <section class="section" id="categories">
 
-<a href="{% url 'classic' %}" class="category-card">
-<img src="{% static 'images/about3.jpeg' %}">
-<div class="category-overlay">
-<h2>CLASSIC</h2>
-</div>
-</a>
+        <div class="section-title">
+            <h2>SHOP BY CATEGORY</h2>
+            <p>Choose Your Style</p>
+        </div>
 
-</div>
+        <div class="categories-grid">
 
-</section>
+            <a href="{% url 'men' %}" class="category-card">
+                <img src="{% static 'images/about1.jpeg' %}">
+                <div class="category-overlay">
+                    <h2>MEN</h2>
+                </div>
+            </a>
 
-<section class="section products-section" id="products">
+            <a href="{% url 'women' %}" class="category-card">
+                <img src="{% static 'images/about2.jpeg' %}">
+                <div class="category-overlay">
+                    <h2>WOMEN</h2>
+                </div>
+            </a>
 
-<div class="section-title">
-<h2>BEST SELLERS</h2>
-<p>Most Wanted Pieces Right Now</p>
-</div>
+            <a href="{% url 'classic' %}" class="category-card">
+                <img src="{% static 'images/about3.jpeg' %}">
+                <div class="category-overlay">
+                    <h2>CLASSIC</h2>
+                </div>
+            </a>
 
-<div class="swiper productSwiper">
+        </div>
 
-<div class="swiper-wrapper">
+    </section>
 
-{% for product in products %}
+    <section class="section products-section" id="products">
 
-<div class="swiper-slide">
+        <div class="section-title">
+            <h2>BEST SELLERS</h2>
+            <p>Most Wanted Pieces Right Now</p>
+        </div>
 
-<div class="product-card">
+        <div class="swiper productSwiper">
 
-<div class="product-image">
-<img src="{{ product.image.url }}" alt="{{ product.name }}">
-</div>
+            <div class="swiper-wrapper">
 
-<div class="product-info">
+                {% for product in products %}
 
-<span class="product-badge">
-BEST SELLER
-</span>
+                <div class="swiper-slide">
 
-<h3>
-{{ product.name }}
-</h3>
+                    <div class="product-card">
 
-<div class="product-price">
-{{ product.price }} EGP
-</div>
+                        <div class="product-image">
+                            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                        </div>
 
-<div class="product-buttons">
+                        <div class="product-info">
 
-<a href="{% url 'product_detail' product.id %}" class="view-btn">
-VIEW
-</a>
+                            <span class="product-badge">
+                                BEST SELLER
+                            </span>
 
-<a href="{% url 'add_to_cart' product.id %}" class="add-btn">
-ADD TO CART
-</a>
+                            <h3>
+                                {{ product.name }}
+                            </h3>
 
-</div>
+                            <div class="product-price">
+                                {{ product.price }} EGP
+                            </div>
 
-</div>
+                            <div class="product-buttons">
 
-</div>
+                                <a href="{% url 'product_detail' product.id %}" class="view-btn">
+                                    VIEW
+                                </a>
 
-</div>
+                                <a href="{% url 'add_to_cart' product.id %}" class="add-btn">
+                                    ADD TO CART
+                                </a>
 
-{% endfor %}
+                            </div>
 
-</div>
+                        </div>
 
-</div>
+                    </div>
 
-</section>
+                </div>
 
-<section class="section about-section" id="about">
+                {% endfor %}
 
-<div class="section-title">
-<h2>ABOUT LUSSO</h2>
-<p>Born In Egypt. Built For The Streets.</p>
-</div>
+            </div>
 
-<div class="about-content">
+        </div>
 
-<p>
+    </section>
 
-LUSSO is a premium Egyptian streetwear brand inspired by
-modern culture, luxury fashion and everyday confidence.
+    <section class="section about-section" id="about">
 
-Our mission is simple:
+        <div class="section-title">
+            <h2>ABOUT LUSSO</h2>
+            <p>Born In Egypt. Built For The Streets.</p>
+        </div>
 
-Create timeless pieces with premium quality that feel as
-good as they look.
+        <div class="about-content">
 
-</p>
+            <p>
 
-</div>
+                LUSSO is a premium Egyptian streetwear brand inspired by
+                modern culture, luxury fashion and everyday confidence.
 
-<div class="section-title">
-<h2>WHAT PEOPLE SAY</h2>
-<p>Customer Reviews</p>
-</div>
+                Our mission is simple:
 
-<div class="reviews-grid">
+                Create timeless pieces with premium quality that feel as
+                good as they look.
 
-<div class="review-card">
-★★★★★
-<p>
-أفضل خامة تيشيرت اشتريتها بصراحة.
-</p>
-</div>
+            </p>
 
-<div class="review-card">
-★★★★★
-<p>
-المقاس مظبوط والتوصيل سريع جداً.
-</p>
-</div>
+        </div>
 
-<div class="review-card">
-★★★★★
-<p>
-خامة ممتازة وشكل فخم.
-</p>
-</div>
+        <div class="section-title">
+            <h2>WHAT PEOPLE SAY</h2>
+            <p>Customer Reviews</p>
+        </div>
 
-</div>
+        <div class="reviews-grid">
 
-</section>
+            <div class="review-card">
+                ★★★★★
+                <p>
+                    أفضل خامة تيشيرت اشتريتها بصراحة.
+                </p>
+            </div>
 
-<section class="section why">
+            <div class="review-card">
+                ★★★★★
+                <p>
+                    المقاس مظبوط والتوصيل سريع جداً.
+                </p>
+            </div>
 
-<div class="section-title">
-<h2>WHY LUSSO</h2>
-<p>Premium Quality You Can Feel</p>
-</div>
+            <div class="review-card">
+                ★★★★★
+                <p>
+                    خامة ممتازة وشكل فخم.
+                </p>
+            </div>
 
-<div class="why-grid">
+        </div>
 
-<div class="why-card">
-<i class="fa-solid fa-shirt"></i>
-<h3>Premium Fabric</h3>
-<p>Heavyweight cotton built to last.</p>
-</div>
+    </section>
 
-<div class="why-card">
-<i class="fa-solid fa-truck-fast"></i>
-<h3>Fast Shipping</h3>
-<p>Fast delivery all over Egypt.</p>
-</div>
+    <section class="section why">
 
-<div class="why-card">
-<i class="fa-solid fa-crown"></i>
-<h3>Luxury Design</h3>
-<p>Streetwear inspired by modern culture.</p>
-</div>
+        <div class="section-title">
+            <h2>WHY LUSSO</h2>
+            <p>Premium Quality You Can Feel</p>
+        </div>
 
-</div>
+        <div class="why-grid">
 
-</section>
+            <div class="why-card">
+                <i class="fa-solid fa-shirt"></i>
+                <h3>Premium Fabric</h3>
+                <p>Heavyweight cotton built to last.</p>
+            </div>
 
-<footer id="contact">
+            <div class="why-card">
+                <i class="fa-solid fa-truck-fast"></i>
+                <h3>Fast Shipping</h3>
+                <p>Fast delivery all over Egypt.</p>
+            </div>
 
-<h2>
-LUSSO
-</h2>
+            <div class="why-card">
+                <i class="fa-solid fa-crown"></i>
+                <h3>Luxury Design</h3>
+                <p>Streetwear inspired by modern culture.</p>
+            </div>
 
-<p>
-Luxury Streetwear For The New Generation
-</p>
+        </div>
 
-<div class="footer-links">
+    </section>
 
-<a href="#">
-Instagram
-</a>
+    <footer id="contact">
 
-<a href="#">
-TikTok
-</a>
+        <h2>
+            LUSSO
+        </h2>
 
-<a href="https://wa.me/201556594553">
-WhatsApp
-</a>
+        <p>
+            Luxury Streetwear For The New Generation
+        </p>
 
-</div>
+        <div class="footer-links">
 
-<p class="copyright">
-© 2026 LUSSO. All Rights Reserved.
-</p>
+            <a href="#">
+                Instagram
+            </a>
 
-</footer>
+            <a href="#">
+                TikTok
+            </a>
 
-<a href="https://wa.me/201556594553" class="whatsapp">
+            <a href="https://wa.me/201556594553">
+                WhatsApp
+            </a>
 
-<i class="fa-brands fa-whatsapp"></i>
+        </div>
 
-</a>
+        <p class="copyright">
+            © 2026 LUSSO. All Rights Reserved.
+        </p>
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <a href="https://wa.me/201556594553" class="whatsapp">
 
-<script>
+        <i class="fa-brands fa-whatsapp"></i>
 
-new Swiper(".productSwiper", {
+    </a>
 
-slidesPerView:3,
-spaceBetween:25,
-loop:true,
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 
-breakpoints:{
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
-0:{
-slidesPerView:1
-},
+    <script>
 
-768:{
-slidesPerView:2
-},
+        new Swiper(".productSwiper", {
 
-1024:{
-slidesPerView:3
-}
+            slidesPerView: 3,
+            spaceBetween: 25,
+            loop: true,
 
-}
+            breakpoints: {
 
-});
+                0: {
+                    slidesPerView: 1
+                },
 
-</script>
+                768: {
+                    slidesPerView: 2
+                },
 
-<style>
+                1024: {
+                    slidesPerView: 3
+                }
 
-.products-section{
-background:#f5f5f5;
-}
+            }
 
-.products-section .section-title h2{
-color:black;
-}
+        });
 
-.products-section .section-title p{
-color:#666;
-}
+    </script>
 
-.product-card{
-background:white;
-border-radius:25px;
-overflow:hidden;
-box-shadow:0 10px 25px rgba(0,0,0,.08);
-}
+    <style>
+        .products-section {
+            background: #f5f5f5;
+        }
 
-.product-image{
-height:320px;
-overflow:hidden;
-}
+        .products-section .section-title h2 {
+            color: black;
+        }
 
-.product-image img{
-width:100%;
-height:100%;
-object-fit:cover;
-}
+        .products-section .section-title p {
+            color: #666;
+        }
 
-.product-info{
-padding:25px;
-}
+        .product-card {
+            background: white;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, .08);
+        }
 
-.product-badge{
-background:black;
-color:white;
-padding:6px 12px;
-border-radius:30px;
-font-size:11px;
-font-weight:700;
-}
+        .product-image {
+            height: 320px;
+            overflow: hidden;
+        }
 
-.product-info h3{
-margin:18px 0;
-font-size:24px;
-}
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 
-.product-price{
-font-size:24px;
-font-weight:800;
-margin-bottom:20px;
-}
+        .product-info {
+            padding: 25px;
+        }
 
-.product-buttons{
-display:flex;
-gap:10px;
-}
+        .product-badge {
+            background: black;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 30px;
+            font-size: 11px;
+            font-weight: 700;
+        }
 
-.view-btn,
-.add-btn{
-flex:1;
-text-align:center;
-padding:14px;
-border-radius:12px;
-text-decoration:none;
-font-weight:700;
-}
+        .product-info h3 {
+            margin: 18px 0;
+            font-size: 24px;
+        }
 
-.view-btn{
-background:#f0f0f0;
-color:black;
-}
+        .product-price {
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
 
-.add-btn{
-background:black;
-color:white;
-}
+        .product-buttons {
+            display: flex;
+            gap: 10px;
+        }
 
-.about-section{
-background:#111;
-}
+        .view-btn,
+        .add-btn {
+            flex: 1;
+            text-align: center;
+            padding: 14px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+        }
 
-.about-content{
-max-width:800px;
-margin:auto;
-text-align:center;
-}
+        .view-btn {
+            background: #f0f0f0;
+            color: black;
+        }
 
-.about-content p{
-color:#bbb;
-font-size:18px;
-line-height:1.9;
-}
+        .add-btn {
+            background: black;
+            color: white;
+        }
 
-.reviews-grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:20px;
-}
+        .about-section {
+            background: #111;
+        }
 
-.review-card{
-background:#181818;
-padding:35px;
-border-radius:20px;
-color:var(--gold);
-font-size:24px;
-}
+        .about-content {
+            max-width: 800px;
+            margin: auto;
+            text-align: center;
+        }
 
-.review-card p{
-margin-top:15px;
-color:white;
-font-size:15px;
-line-height:1.8;
-}
+        .about-content p {
+            color: #bbb;
+            font-size: 18px;
+            line-height: 1.9;
+        }
 
-footer{
-background:black;
-padding:80px 20px;
-text-align:center;
-}
+        .products-grid{
+            display:grid;
+            grid-template-columns:repeat(2,1fr);
+            gap:12px;
+        }
 
-footer h2{
-color:var(--gold);
-font-size:40px;
-letter-spacing:5px;
-margin-bottom:15px;
-}
+        .review-card {
+            background: #181818;
+            padding: 35px;
+            border-radius: 20px;
+            color: var(--gold);
+            font-size: 24px;
+        }
 
-footer p{
-color:#828080;
-}
+        .review-card p {
+            margin-top: 15px;
+            color: white;
+            font-size: 15px;
+            line-height: 1.8;
+        }
 
-.footer-links{
-display:flex;
-justify-content:center;
-gap:25px;
-margin:30px 0;
-flex-wrap:wrap;
-}
+        footer {
+            background: black;
+            padding: 80px 20px;
+            text-align: center;
+        }
 
-.footer-links a{
-color:white;
-text-decoration:none;
-}
+        footer h2 {
+            color: var(--gold);
+            font-size: 40px;
+            letter-spacing: 5px;
+            margin-bottom: 15px;
+        }
 
-.whatsapp{
-position:fixed;
-right:25px;
-bottom:25px;
-width:65px;
-height:65px;
-border-radius:50%;
-background:#25d366;
-display:flex;
-align-items:center;
-justify-content:center;
-color:white;
-font-size:32px;
-text-decoration:none;
-z-index:9999;
-}
+        footer p {
+            color: #828080;
+        }
 
-@media(max-width:900px){
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
 
-.reviews-grid{
-grid-template-columns:1fr;
-}
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+        }
 
-.product-image{
-height:260px;
-}
+        .whatsapp {
+            position: fixed;
+            right: 25px;
+            bottom: 25px;
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            background: #25d366;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 32px;
+            text-decoration: none;
+            z-index: 9999;
+        }
 
-}
+        @media(max-width:900px) {
 
-</style>
+            .reviews-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .product-image {
+                height: 260px;
+            }
+
+        }
+    </style>
 
 </body>
+
 </html>
