@@ -828,29 +828,28 @@
 
     <script>
 
-        new Swiper(".productSwiper", {
+       new Swiper(".productSwiper", {
 
-            slidesPerView: 3,
-            spaceBetween: 25,
-            loop: true,
+        slidesPerView: 2,
+        spaceBetween: 10,
 
-            breakpoints: {
+        breakpoints: {
 
-                0: {
-                    slidesPerView: 1
-                },
+            0: {
+                slidesPerView: 2
+            },
 
-                768: {
-                    slidesPerView: 2
-                },
+            768: {
+                slidesPerView: 3
+            },
 
-                1024: {
-                    slidesPerView: 3
-                }
-
+            1024: {
+                slidesPerView: 4
             }
 
-        });
+        }
+
+    });
 
     </script>
 
@@ -886,7 +885,7 @@
         }
 
         .product-info {
-            padding: 25px;
+            padding: 12px;
         }
 
         .product-badge {
@@ -900,11 +899,11 @@
 
         .product-info h3 {
             margin: 18px 0;
-            font-size: 24px;
+            font-size: 16px;
         }
 
         .product-price {
-            font-size: 24px;
+            font-size: 16px;
             font-weight: 800;
             margin-bottom: 20px;
         }
@@ -1025,7 +1024,7 @@
             }
 
             .product-image {
-                height: 260px;
+                height: 180px;
             }
 
         }
