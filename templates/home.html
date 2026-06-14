@@ -515,7 +515,37 @@
                 font-size: 22px;
             }
 
-        }
+.products-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+}
+
+@media(max-width:768px){
+
+    .product-card{
+        border-radius:15px;
+    }
+
+    .product-image{
+        height:170px;
+    }
+
+    .product-info{
+        padding:10px;
+    }
+
+    .product-info h3{
+        font-size:14px;
+    }
+
+    .product-price{
+        font-size:16px;
+    }
+
+}
+}
+
     </style>
 </head>
 
@@ -644,13 +674,35 @@
             <p>Most Wanted Pieces Right Now</p>
         </div>
 
-        <div class="swiper productSwiper">
+        <div class="products-grid">
 
-            <div class="swiper-wrapper">
+    {% for product in products %}
 
-                {% for product in products %}
+    <div class="product-card">
 
-                <div class="swiper-slide">
+        <div class="product-image">
+            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+        </div>
+
+        <div class="product-info">
+
+            <h3>{{ product.name }}</h3>
+
+            <div class="product-price">
+                {{ product.price }} EGP
+            </div>
+
+            <a href="{% url 'product_detail' product.id %}" class="view-btn">
+                VIEW
+            </a>
+
+        </div>
+
+    </div>
+
+    {% endfor %}
+
+</div>
 
                     <div class="product-card">
 
@@ -821,10 +873,6 @@
         <i class="fa-brands fa-whatsapp"></i>
 
     </a>
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
     <script>
 
