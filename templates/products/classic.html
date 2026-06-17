@@ -1,12 +1,19 @@
 {% load static %}
 
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
+
+    <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>CLASSIC | LUSSO</title>
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
 <style>
 *{
 margin:0;
@@ -38,9 +45,16 @@ letter-spacing:4px;
 }
 .cart-btn{
 position:relative;
-color:white;
-font-size:24px;
+color:rgb(246, 216, 21);
+font-size:32px;
 text-decoration:none;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+.cart-btn i{
+font-size:30px;
+color:white;
 }
 .cart-count{
 position:absolute;
@@ -145,7 +159,22 @@ font-size:28px;
 height:220px;
 margin:10px;
 }
+.cart-btn{
+    position: relative;
+    color: white;
+    font-size: 24px;
+    text-decoration: none;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 }
+
+.cart-btn i{
+    color:white;
+    font-size:24px;
+}
+}
+
 </style>
 </head>
 <body>
@@ -155,6 +184,7 @@ LUSSO
 </a>
 <a href="{% url 'cart' %}" class="cart-btn">
 <span class="cart-count">
+    <i class="fa-solid fa-bag-shopping"></i>
 {{ request.session.cart|length }}
 </span>
 </a>
