@@ -518,7 +518,7 @@
 .products-grid{
     display:grid;
     grid-template-columns:repeat(2,1fr);
-    gap:12px;
+    gap:15px;
 }
 
 @media(max-width:768px){
@@ -699,50 +699,9 @@
         </div>
 
     </div>
-
-</div>
-
-                    <div class="product-card">
-
-                        <div class="product-image">
-                            <img src="{{ product.image.url }}" alt="{{ product.name }}">
-                        </div>
-
-                        <div class="product-info">
-
-                            <span class="product-badge">
-                                BEST SELLER
-                            </span>
-
-                            <h3>
-                                {{ product.name }}
-                            </h3>
-
-                            <div class="product-price">
-                                {{ product.price }} EGP
-                            </div>
-
-                            <div class="product-buttons">
-
-                                <a href="{% url 'product_detail' product.id %}" class="view-btn">
-                                    VIEW
-                                </a>
-
-                                <a href="{% url 'add_to_cart' product.id %}" class="add-btn">
-                                    ADD TO CART
-                                </a>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
+                   
 
                 {% endfor %}
-
-            </div>
 
         </div>
 
@@ -872,32 +831,7 @@
 
     </a>
 
-    <script>
-
-       new Swiper(".productSwiper", {
-
-        slidesPerView: 2,
-        spaceBetween: 10,
-
-        breakpoints: {
-
-            0: {
-                slidesPerView: 2
-            },
-
-            768: {
-                slidesPerView: 3
-            },
-
-            1024: {
-                slidesPerView: 4
-            }
-
-        }
-
-    });
-
-    </script>
+</script>
 
     <style>
         .products-section {
@@ -918,8 +852,7 @@
             overflow: hidden;
             box-shadow: 0 10px 25px rgba(0, 0, 0, .08);
 
-            max-width: 180px;
-            margin: auto;
+             width:100%;
         }
 
         .product-image {
@@ -1001,7 +934,7 @@
         .products-grid{
             display:grid;
             grid-template-columns:repeat(2,1fr);
-            gap:12px;
+            gap:15px;
         }
 
         .review-card {
@@ -1066,17 +999,6 @@
             z-index: 9999;
         }
 
-        @media(max-width:900px) {
-
-            .reviews-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .product-image {
-                height: 140px;
-            }
-
-        }
     </style>
 
 </body>
