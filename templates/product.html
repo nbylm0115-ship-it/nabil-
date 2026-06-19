@@ -179,6 +179,23 @@ body{
 .color-btn.gray{
     background:gray;
 }
+.color-btn.brown{
+    background:#6b4423;
+}
+
+.color-btn.beige{
+    background:#d8c3a5;
+}
+
+.color-btn.olive{
+    background:#556b2f;
+}
+
+.color-btn.disabled{
+    opacity:.3;
+    cursor:not-allowed;
+    filter:grayscale(100%);
+}
 .color-btn.active{
     border:3px solid white;
     transform:scale(1.1);
@@ -257,19 +274,80 @@ body{
             SELECT COLOR
         </div>
         <div class="colors">
-            <button type="button"
-            class="color-btn white"
-            onclick="selectColor(this,'White','{{ product.white_image.url }}')">
-            </button>
-            <button type="button"
-            class="color-btn black active"
-            onclick="selectColor(this,'Black','{{ product.black_image.url }}')">
-            </button>
-            <button type="button"
-            class="color-btn gray"
-            onclick="selectColor(this,'Gray','{{ product.grey_image.url }}')">
-            </button>
-        </div>
+
+{% if product.white_image %}
+<button type="button"
+class="color-btn white"
+onclick="selectColor(this,'White','{{ product.white_image.url }}')">
+</button>
+{% else %}
+<button type="button"
+class="color-btn white disabled"
+disabled>
+</button>
+{% endif %}
+
+{% if product.black_image %}
+<button type="button"
+class="color-btn black active"
+onclick="selectColor(this,'Black','{{ product.black_image.url }}')">
+</button>
+{% else %}
+<button type="button"
+class="color-btn black disabled"
+disabled>
+</button>
+{% endif %}
+
+{% if product.grey_image %}
+<button type="button"
+class="color-btn gray"
+onclick="selectColor(this,'Grey','{{ product.grey_image.url }}')">
+</button>
+{% else %}
+<button type="button"
+class="color-btn gray disabled"
+disabled>
+</button>
+{% endif %}
+
+{% if product.brown_image %}
+<button type="button"
+class="color-btn brown"
+onclick="selectColor(this,'Brown','{{ product.brown_image.url }}')">
+</button>
+{% else %}
+<button type="button"
+class="color-btn brown disabled"
+disabled>
+</button>
+{% endif %}
+
+{% if product.beige_image %}
+<button type="button"
+class="color-btn beige"
+onclick="selectColor(this,'Beige','{{ product.beige_image.url }}')">
+</button>
+{% else %}
+<button type="button"
+class="color-btn beige disabled"
+disabled>
+</button>
+{% endif %}
+
+{% if product.olive_image %}
+<button type="button"
+class="color-btn olive"
+onclick="selectColor(this,'Olive','{{ product.olive_image.url }}')">
+</button>
+{% else %}
+<button type="button"
+class="color-btn olive disabled"
+disabled>
+</button>
+{% endif %}
+
+</div>
         <!-- FORM -->
         <form action="{% url 'add_to_cart' product.id %}"
               method="GET">

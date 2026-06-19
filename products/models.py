@@ -22,6 +22,8 @@ class Product(models.Model):
         upload_to='products/'
     )
 
+    # صور الألوان
+
     black_image = models.ImageField(
         upload_to='products/',
         blank=True,
@@ -39,6 +41,38 @@ class Product(models.Model):
         blank=True,
         null=True
     )
+
+    brown_image = models.ImageField(
+        upload_to='products/',
+        blank=True,
+        null=True
+    )
+
+    beige_image = models.ImageField(
+        upload_to='products/',
+        blank=True,
+        null=True
+    )
+
+    olive_image = models.ImageField(
+        upload_to='products/',
+        blank=True,
+        null=True
+    )
+
+    # مخزون كل لون
+
+    black_stock = models.IntegerField(default=0)
+
+    white_stock = models.IntegerField(default=0)
+
+    grey_stock = models.IntegerField(default=0)
+
+    brown_stock = models.IntegerField(default=0)
+
+    beige_stock = models.IntegerField(default=0)
+
+    olive_stock = models.IntegerField(default=0)
 
     CATEGORY_CHOICES = [
         ('men', 'Men'),
@@ -61,11 +95,10 @@ class Product(models.Model):
     )
 
     def __str__(self):
-
         return self.name
 
 
-# =========================================
+## =========================================
 # CART
 # =========================================
 
@@ -76,7 +109,20 @@ class Cart(models.Model):
     )
 
     def __str__(self):
+        return f"Cart {self.id}"
 
+
+## =========================================
+# CART
+# =========================================
+
+class Cart(models.Model):
+
+    created_at = models.DateTimeField(
+        auto_now_add=True
+    )
+
+    def __str__(self):
         return f"Cart {self.id}"
 
 
@@ -118,11 +164,9 @@ class CartItem(models.Model):
     )
 
     def subtotal(self):
-
         return self.product.price * self.quantity
 
     def __str__(self):
-
         return self.product.name
 
 
