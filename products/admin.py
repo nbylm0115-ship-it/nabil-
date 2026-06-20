@@ -1,12 +1,62 @@
 from django.contrib import admin
-
 from .models import Product, Order, OrderItem
+
+
+@admin.register(Product)
+class ProductAdmin(admin.ModelAdmin):
+
+    list_display = (
+        'name',
+        'price',
+        'category',
+        'stock',
+    )
+
+    fieldsets = (
+
+        ('Basic Info', {
+            'fields': (
+                'name',
+                'price',
+                'description',
+                'category',
+                'stock',
+            )
+        }),
+
+        ('Main Image', {
+            'fields': (
+                'image',
+            )
+        }),
+
+        ('Color Images', {
+            'fields': (
+                'black_image',
+                'white_image',
+                'grey_image',
+                'brown_image',
+                'beige_image',
+                'olive_image',
+            )
+        }),
+
+        ('Color Stock', {
+            'fields': (
+                'black_stock',
+                'white_stock',
+                'grey_stock',
+                'brown_stock',
+                'beige_stock',
+                'olive_stock',
+            )
+        }),
+    )
 
 
 class OrderItemInline(admin.TabularInline):
 
     model = OrderItem
-
     extra = 0
 
     readonly_fields = (
@@ -18,6 +68,7 @@ class OrderItemInline(admin.TabularInline):
     )
 
 
+@admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
 
     list_display = (
@@ -28,8 +79,3 @@ class OrderAdmin(admin.ModelAdmin):
     )
 
     inlines = [OrderItemInline]
-
-
-admin.site.register(Product)
-
-admin.site.register(Order, OrderAdmin)
