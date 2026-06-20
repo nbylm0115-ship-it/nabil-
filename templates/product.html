@@ -302,8 +302,12 @@ disabled>
 {% if product.grey_image %}
 <button type="button"
 class="color-btn gray"
-onclick="selectColor(this,'Grey','{{ product.grey_image.url }}')">
+{% if product.grey_image %}
+<button type="button"
+        class="color-btn gray"
+        onclick="selectColor(this,'Gray','{{ product.grey_image.url }}')">
 </button>
+{% endif %}</button>
 {% else %}
 <button type="button"
 class="color-btn gray disabled"
