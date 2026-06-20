@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 
 # =========================================
@@ -7,9 +8,7 @@ from django.db import models
 
 class Product(models.Model):
 
-    name = models.CharField(
-        max_length=200
-    )
+    name = models.CharField(max_length=200)
 
     price = models.DecimalField(
         max_digits=10,
@@ -22,56 +21,18 @@ class Product(models.Model):
         upload_to='products/'
     )
 
-    # صور الألوان
-
-    black_image = models.ImageField(
-        upload_to='products/',
-        blank=True,
-        null=True
-    )
-
-    white_image = models.ImageField(
-        upload_to='products/',
-        blank=True,
-        null=True
-    )
-
-    grey_image = models.ImageField(
-        upload_to='products/',
-        blank=True,
-        null=True
-    )
-
-    brown_image = models.ImageField(
-        upload_to='products/',
-        blank=True,
-        null=True
-    )
-
-    beige_image = models.ImageField(
-        upload_to='products/',
-        blank=True,
-        null=True
-    )
-
-    olive_image = models.ImageField(
-        upload_to='products/',
-        blank=True,
-        null=True
-    )
-
-    # مخزون كل لون
+    black_image = models.ImageField(upload_to='products/', blank=True, null=True)
+    white_image = models.ImageField(upload_to='products/', blank=True, null=True)
+    grey_image = models.ImageField(upload_to='products/', blank=True, null=True)
+    brown_image = models.ImageField(upload_to='products/', blank=True, null=True)
+    beige_image = models.ImageField(upload_to='products/', blank=True, null=True)
+    olive_image = models.ImageField(upload_to='products/', blank=True, null=True)
 
     black_stock = models.IntegerField(default=0)
-
     white_stock = models.IntegerField(default=0)
-
     grey_stock = models.IntegerField(default=0)
-
     brown_stock = models.IntegerField(default=0)
-
     beige_stock = models.IntegerField(default=0)
-
     olive_stock = models.IntegerField(default=0)
 
     CATEGORY_CHOICES = [
@@ -86,19 +47,17 @@ class Product(models.Model):
         default='men'
     )
 
-    stock = models.IntegerField(
-        default=1
-    )
+    stock = models.IntegerField(default=1)
 
     created_at = models.DateTimeField(
-        auto_now_add=True
-    )
+    default=timezone.now
+)
 
-    def __str__(self):
+def __str__(self):
         return self.name
 
 
-## =========================================
+# =========================================
 # CART
 # =========================================
 
@@ -109,20 +68,7 @@ class Cart(models.Model):
     )
 
     def __str__(self):
-        return f"Cart {self.id}"
 
-
-## =========================================
-# CART
-# =========================================
-
-class Cart(models.Model):
-
-    created_at = models.DateTimeField(
-        auto_now_add=True
-    )
-
-    def __str__(self):
         return f"Cart {self.id}"
 
 
@@ -164,9 +110,11 @@ class CartItem(models.Model):
     )
 
     def subtotal(self):
+
         return self.product.price * self.quantity
 
     def __str__(self):
+
         return self.product.name
 
 
