@@ -243,12 +243,12 @@ def women(request):
     )
 
 
-def classic(request):
-    products = Product.objects.filter(category='classic')
+def shoes(request):
+    products = Product.objects.filter(category='shoes')
 
     return render(
         request,
-        'products/classic.html',
+        'products/shoes.html',
         {
             'products': products
         }

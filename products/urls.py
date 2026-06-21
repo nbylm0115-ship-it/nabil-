@@ -23,7 +23,7 @@ urlpatterns = [
 
     path('men/', views.men, name='men'),
     path('women/', views.women, name='women'),
-    path('classic/', views.classic, name='classic'),
+    path('shoes/', views.shoes, name='shoes'),
 
 ]
 
