@@ -214,10 +214,8 @@ def checkout(request):
 
 # SUCCESS PAGE
 
-def launch(request):
-    return render(request,'launch.html')
-
-from django.shortcuts import render
+def success(request):
+    return render(request, 'launch.html')
 
 def men(request):
     products = Product.objects.filter(category='men')
