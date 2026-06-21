@@ -217,6 +217,9 @@ def success(request):
 
     return render(request, 'success.html')
 
+def launch(request):
+    return render(request,'launch.html')
+
 from django.shortcuts import render
 
 def men(request):
