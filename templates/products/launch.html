@@ -5,217 +5,113 @@
 <title>LUSSO Launch</title>
 
 <style>
-body{
-    margin:0;
-    background:#0b0b0b;
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    overflow:hidden;
-    font-family:Arial;
-}
 
-.container{
-    text-align:center;
-    color:white;
-}
-
-.shirt{
-    font-size:120px;
-    animation: fold 1.5s forwards;
-}
-
-.box{
-    font-size:100px;
-    opacity:0;
-    animation: showBox 1s forwards;
-    animation-delay:1.5s;
-}
-
-.rocket{
-    font-size:100px;
-    opacity:0;
-    animation: launch 2s forwards;
-    animation-delay:3s;
-}
-
-.text{
-    margin-top:20px;
-    font-size:28px;
-    opacity:0;
-    animation: showText 1s forwards;
-    animation-delay:5s;
-}
-
-@keyframes fold{
-    0%{transform:scale(1);}
-    100%{transform:scale(.4);}
-}
-
-@keyframes showBox{
-    from{opacity:0;}
-    to{opacity:1;}
-}
-
-@keyframes launch{
-    0%{
-        opacity:1;
-        transform:translateY(0);
-    }
-    100%{
-        opacity:1;
-        transform:translateY(-800px);
-    }
-}
-
-@keyframes showText{
-    from{opacity:0;}
-    to{opacity:1;}
-}
-</style>
-</head>
-
-<body>
-
-<div class="container">
-
-    <div class="shirt">👕</div>
-
-    <div class="box">📦</div>
-
-    <div class="rocket">🚀</div>
-
-    <div class="text">
-        ORDER IS ON THE WAY
-    </div>
-
-</div>
-
-<script>
-setTimeout(function(){
-    window.location.href="/success/";
-},8000);
-</script>
-
-</body>
-</html><!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>LUSSO Launch</title>
-
-<style>
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+margin:0;
+padding:0;
+box-sizing:border-box;
 }
 
 body{
-    background:#000;
-    height:100vh;
-    overflow:hidden;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-family:Arial,sans-serif;
+background:#050505;
+height:100vh;
+overflow:hidden;
+display:flex;
+justify-content:center;
+align-items:center;
+font-family:Arial,sans-serif;
+color:white;
 }
 
 .scene{
-    position:relative;
-    width:100%;
-    height:100vh;
+position:relative;
+width:300px;
+height:500px;
+text-align:center;
 }
 
 .shirt{
-    position:absolute;
-    left:50%;
-    top:20%;
-    transform:translateX(-50%);
-    font-size:90px;
-    animation:shirtDrop 1.5s forwards;
+position:absolute;
+left:50%;
+top:80px;
+transform:translateX(-50%);
+font-size:90px;
+animation:shirtDrop 1.5s forwards;
+z-index:2;
 }
 
 .box{
-    position:absolute;
-    left:50%;
-    top:60%;
-    transform:translateX(-50%);
-    font-size:120px;
+position:absolute;
+left:50%;
+top:240px;
+transform:translateX(-50%);
+font-size:110px;
+z-index:1;
 }
 
 .rocket{
-    position:absolute;
-    left:50%;
-    top:60%;
-    transform:translateX(-50%);
-    font-size:120px;
-    opacity:0;
-    animation:showRocket 0.5s forwards;
-    animation-delay:3s;
+position:absolute;
+left:50%;
+top:240px;
+transform:translateX(-50%);
+font-size:120px;
+opacity:0;
+animation:rocketLaunch 2s forwards;
+animation-delay:2s;
 }
 
 .message{
-    position:absolute;
-    width:100%;
-    text-align:center;
-    top:45%;
-    color:white;
-    opacity:0;
-    animation:showMessage 1s forwards;
-    animation-delay:5s;
+position:absolute;
+bottom:0;
+width:100%;
+opacity:0;
+animation:showText 1s forwards;
+animation-delay:4s;
 }
 
 .message h1{
-    font-size:48px;
-    margin-bottom:10px;
+font-size:42px;
+margin-bottom:10px;
 }
 
 .message p{
-    font-size:20px;
-    color:#d4af37;
-}
-
-.btn{
-    display:inline-block;
-    margin-top:25px;
-    padding:14px 35px;
-    background:#d4af37;
-    color:black;
-    text-decoration:none;
-    border-radius:30px;
-    font-weight:bold;
+font-size:18px;
+color:#d4d4d4;
 }
 
 @keyframes shirtDrop{
-    0%{
-        top:20%;
-        transform:translateX(-50%) scale(1);
-    }
-    100%{
-        top:55%;
-        transform:translateX(-50%) scale(.4);
-    }
+0%{
+top:80px;
+opacity:1;
+}
+100%{
+top:250px;
+opacity:0;
+}
 }
 
-@keyframes showRocket{
-    0%{
-        opacity:0;
-    }
-    100%{
-        opacity:1;
-    }
+@keyframes rocketLaunch{
+0%{
+opacity:1;
+transform:translateX(-50%) translateY(0);
+}
+100%{
+opacity:1;
+transform:translateX(-50%) translateY(-500px);
+}
 }
 
-@keyframes showMessage{
-    from{
-        opacity:0;
-    }
-    to{
-        opacity:1;
-    }
+@keyframes showText{
+from{
+opacity:0;
+transform:translateY(30px);
 }
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
 </style>
 </head>
 
@@ -223,42 +119,24 @@ body{
 
 <div class="scene">
 
-    <div class="shirt" id="shirt">👕</div>
+<div class="shirt">👕</div>
 
-    <div class="box" id="box">📦</div>
+<div class="box">📦</div>
 
-    <div class="rocket" id="rocket">🚀</div>
+<div class="rocket">🚀</div>
 
-    <div class="message" id="msg">
-        <h1>ORDER CONFIRMED</h1>
-        <p>PREPARING FOR TAKEOFF 🚀</p>
-
-        <a href="/" class="btn">
-            CONTINUE SHOPPING
-        </a>
-    </div>
+<div class="message">
+<h1>ORDER CONFIRMED</h1>
+<p>Your order is on the way 🚀</p>
+</div>
 
 </div>
 
 <script>
 
-setTimeout(()=>{
-    document.getElementById("shirt").style.opacity="0";
-},1500);
-
-setTimeout(()=>{
-    document.getElementById("box").innerHTML="📦✨";
-},2000);
-
-setTimeout(()=>{
-    document.getElementById("box").style.opacity="0";
-},3000);
-
-setTimeout(()=>{
-    const rocket=document.getElementById("rocket");
-    rocket.style.transition="3s";
-    rocket.style.transform="translate(-50%,-1200px)";
-},3500);
+setTimeout(function(){
+window.location.href="/";
+},7000);
 
 </script>
 
