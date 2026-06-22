@@ -215,7 +215,7 @@ def checkout(request):
 # SUCCESS PAGE
 
 def success(request):
-    return render(request, 'launch.html')
+    return render(request, 'products/launch.html')
 
 def launch(request):
     return render(request, 'launch.html')
