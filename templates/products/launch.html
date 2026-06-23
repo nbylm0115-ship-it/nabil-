@@ -1,3 +1,217 @@
-<h1 style="font-size:100px;color:red">
-MAHMOUD TEST
-</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LUSSO Delivery</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+background:#050505;
+height:100vh;
+overflow:hidden;
+display:flex;
+justify-content:center;
+align-items:center;
+font-family:Arial,sans-serif;
+color:white;
+}
+
+.container{
+position:relative;
+width:100%;
+height:100vh;
+overflow:hidden;
+}
+
+/* TSHIRT */
+.shirt{
+position:absolute;
+left:50%;
+top:120px;
+transform:translateX(-50%);
+font-size:90px;
+z-index:5;
+animation:dropShirt 2.5s forwards;
+}
+
+/* BOX */
+.box{
+position:absolute;
+left:50%;
+top:300px;
+transform:translateX(-50%);
+font-size:120px;
+z-index:4;
+animation:loadBox 1s forwards;
+animation-delay:3.5s;
+}
+
+.truck{
+position:absolute;
+left:-250px;
+bottom:120px;
+font-size:140px;
+z-index:5;
+
+transform: scaleX(-1);
+
+animation:driveTruck 5s forwards;
+animation-delay:2s;
+}
+
+@keyframes driveTruck{
+
+0%{
+left:-250px;
+}
+
+40%{
+left:42%;
+}
+
+60%{
+left:42%;
+}
+
+100%{
+left:120%;
+}
+
+}
+
+@keyframes loadBox{
+
+0%{
+opacity:1;
+transform:translateX(-50%);
+}
+
+100%{
+opacity:0;
+transform:translateX(-50%) translateY(-120px); translateY(-180px);
+}
+
+}
+
+/* TEXT */
+.message{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+text-align:center;
+opacity:0;
+animation:showMessage 1s forwards;
+animation-delay:6s;
+}
+
+.message h1{
+font-size:60px;
+margin-bottom:10px;
+font-weight:bold;
+}
+
+.message p{
+font-size:22px;
+color:#d4d4d4;
+}
+
+/* STARS */
+.stars{
+position:absolute;
+font-size:40px;
+right:20%;
+top:35%;
+opacity:0;
+animation:showStars 1s forwards;
+animation-delay:6s;
+}
+
+/* ANIMATIONS */
+
+@keyframes dropShirt{
+0%{
+top:120px;
+opacity:1;
+}
+100%{
+top:320px;
+opacity:0;
+}
+}
+
+@keyframes driveTruck{
+0%{
+left:-400px;
+}
+30%{
+left:35%;
+}
+60%{
+left:35%;
+}
+100%{
+left:120%;
+}
+}
+
+@keyframes showMessage{
+from{
+opacity:0;
+transform:translate(-50%,-40%);
+}
+to{
+opacity:1;
+transform:translate(-50%,-50%);
+}
+}
+
+@keyframes showStars{
+from{
+opacity:0;
+}
+to{
+opacity:1;
+}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="shirt">👕</div>
+
+<div class="box">📦</div>
+
+<div class="truck">🚛</div>
+
+<div class="message">
+<h1>ORDER CONFIRMED</h1>
+<p>Your order is on the way 🚚</p>
+</div>
+
+<div class="stars">✨</div>
+
+</div>
+
+<script>
+
+setTimeout(function(){
+window.location.href="/";
+},9000);
+
+</script>
+
+</body>
+</html>
