@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>LUSSO Launch</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LUSSO Delivery</title>
 
 <style>
 
@@ -23,92 +24,162 @@ font-family:Arial,sans-serif;
 color:white;
 }
 
-.scene{
+.container{
 position:relative;
-width:300px;
-height:500px;
-text-align:center;
+width:100%;
+height:100vh;
+overflow:hidden;
 }
 
+/* TSHIRT */
 .shirt{
 position:absolute;
 left:50%;
-top:80px;
+top:120px;
 transform:translateX(-50%);
 font-size:90px;
-animation:shirtDrop 1.5s forwards;
-z-index:2;
+z-index:5;
+animation:dropShirt 2.5s forwards;
 }
 
+/* BOX */
 .box{
 position:absolute;
 left:50%;
-top:240px;
-transform:translateX(-50%);
-font-size:110px;
-z-index:1;
-}
-
-.rocket{
-position:absolute;
-left:50%;
-top:240px;
+top:300px;
 transform:translateX(-50%);
 font-size:120px;
-opacity:0;
-animation:rocketLaunch 2s forwards;
+z-index:4;
+animation:loadBox 1s forwards;
+animation-delay:3.5s;
+}
+
+.truck{
+position:absolute;
+left:-250px;
+bottom:120px;
+font-size:140px;
+z-index:5;
+
+transform: scaleX(-1);
+
+animation:driveTruck 5s forwards;
 animation-delay:2s;
 }
 
+@keyframes driveTruck{
+
+0%{
+left:-250px;
+}
+
+40%{
+left:42%;
+}
+
+60%{
+left:42%;
+}
+
+100%{
+left:120%;
+}
+
+}
+
+@keyframes loadBox{
+
+0%{
+opacity:1;
+transform:translateX(-50%);
+}
+
+100%{
+opacity:0;
+transform:translateX(-50%) translateY(-20px);
+}
+
+}
+
+/* TEXT */
 .message{
 position:absolute;
-bottom:0;
-width:100%;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+text-align:center;
 opacity:0;
-animation:showText 1s forwards;
-animation-delay:4s;
+animation:showMessage 1s forwards;
+animation-delay:6s;
 }
 
 .message h1{
-font-size:42px;
+font-size:60px;
 margin-bottom:10px;
+font-weight:bold;
 }
 
 .message p{
-font-size:18px;
+font-size:22px;
 color:#d4d4d4;
 }
 
-@keyframes shirtDrop{
+/* STARS */
+.stars{
+position:absolute;
+font-size:40px;
+right:20%;
+top:35%;
+opacity:0;
+animation:showStars 1s forwards;
+animation-delay:6s;
+}
+
+/* ANIMATIONS */
+
+@keyframes dropShirt{
 0%{
-top:80px;
+top:120px;
 opacity:1;
 }
 100%{
-top:250px;
+top:320px;
 opacity:0;
 }
 }
 
-@keyframes rocketLaunch{
+@keyframes driveTruck{
 0%{
-opacity:1;
-transform:translateX(-50%) translateY(0);
+left:-400px;
+}
+30%{
+left:35%;
+}
+60%{
+left:35%;
 }
 100%{
-opacity:1;
-transform:translateX(-50%) translateY(-500px);
+left:120%;
 }
 }
 
-@keyframes showText{
+@keyframes showMessage{
 from{
 opacity:0;
-transform:translateY(30px);
+transform:translate(-50%,-40%);
 }
 to{
 opacity:1;
-transform:translateY(0);
+transform:translate(-50%,-50%);
+}
+}
+
+@keyframes showStars{
+from{
+opacity:0;
+}
+to{
+opacity:1;
 }
 }
 
@@ -117,18 +188,20 @@ transform:translateY(0);
 
 <body>
 
-<div class="scene">
+<div class="container">
 
 <div class="shirt">👕</div>
 
 <div class="box">📦</div>
 
-<div class="rocket">🚀</div>
+<div class="truck">🚛</div>
 
 <div class="message">
 <h1>ORDER CONFIRMED</h1>
-<p>Your order is on the way 🚀</p>
+<p>Your order is on the way 🚚</p>
 </div>
+
+<div class="stars">✨</div>
 
 </div>
 
@@ -136,7 +209,7 @@ transform:translateY(0);
 
 setTimeout(function(){
 window.location.href="/";
-},7000);
+},9000);
 
 </script>
 
