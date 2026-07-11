@@ -192,6 +192,13 @@ margin-top:50px;
 color:#888;
 }
 
+.description{
+    color:#bdbdbd;
+    font-size:13px;
+    margin:8px 0;
+    line-height:1.5;
+}
+
 </style>
 </head>
 
@@ -244,6 +251,11 @@ LUSSO
 <div class="product-info">
 
 <h3>{{ product.name }}</h3>
+
+<p class="description">
+    {{ product.description }}
+</p>
+
 
 <div class="price">
 {{ product.price }} EGP
