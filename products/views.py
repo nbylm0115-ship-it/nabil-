@@ -244,12 +244,12 @@ def women(request):
     )
 
 
-def shoes(request):
-    products = Product.objects.filter(category='shoes')
+def pants(request):
+    products = Product.objects.filter(category='pants')
 
     return render(
         request,
-        'products/shoes.html',
+        'products/pants.html',
         {
             'products': products
         }

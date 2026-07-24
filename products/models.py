@@ -38,7 +38,7 @@ class Product(models.Model):
     CATEGORY_CHOICES = [
         ('men', 'Men'),
         ('women', 'Women'),
-        ('shoes', 'Shoes'),
+        ('pants', 'Pants'),
     ]
 
     category = models.CharField(
